@@ -1,0 +1,58 @@
+const queryCita =
+  "SELECT  case when cit.`fecha_citaAgen` = current_date() then 'Hoy' when cit.`fecha_citaAgen` = DATE_SUB(current_date(), INTERVAL -1 DAY) then 'Mañana' when WEEKOFYEAR(cit.`fecha_citaAgen`) =  WEEKOFYEAR(current_date()) then 'Esta semana' when extract(month from cit.`fecha_citaAgen`) = extract(month from current_date()) then 'Este mes' else traducirMes(monthname(cit.`fecha_citaAgen`)) end as 'Cuando',DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`fecha_citaAgen`)),'%Y-%m-%d') as fecha_cita ,TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaIni_citaAgen`)),'%H:%i') as 'hora_inicio', TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaFin_citaAgen`)),'%H:%i') as 'hora_fin',pac. `id_paciente`, concat_ws(' ',pac.`priNom_paciente`,pac.`segNom_paciente`,pac.`priApe_paciente`,pac.`segApe_paciente`) as 'Paciente',pac.`eda_paciente`,if(pac.`telRes_paciente` = null, pac.`tel_paciente`,pac.`telRes_paciente`) as 'Telefono', cit.`moti_citaAgen`, cit.`esta_citaAgen` FROM `citaAgendada_tbl` as cit INNER JOIN `paciente_tbl` as pac ON cit.`id_paciente` = pac.`id_paciente` WHERE ";
+
+const orderbyFecha = " ORDER BY cit.`fecha_citaAgen` ASC; ";
+
+//
+export const consultasCitas = {
+  //procedimiento almacenado que actualiza estado de las citas
+  proc_actualizar_citas: " CALL `ActualizarEstadoCitas`();  ",
+
+  getCitasPendientes: queryCita + "cit.`esta_citaAgen`= 1" + orderbyFecha,
+
+  getCitasHoy:
+    queryCita + "cit.`fecha_citaAgen`=  current_date() " + orderbyFecha,
+
+  getCitasManana:
+    queryCita +
+    "cit.`fecha_citaAgen`=  DATE_SUB(current_date(), INTERVAL -1 DAY)" +
+    orderbyFecha,
+
+  getCitasSemana:
+    queryCita +
+    "extract(year from cit.`fecha_citaAgen`) = extract(year from current_date()) AND WEEKOFYEAR(cit.`fecha_citaAgen`) =  WEEKOFYEAR(current_date())" +
+    orderbyFecha,
+
+  getCitaMes:
+    queryCita +
+    "extract(year_month from cit.`fecha_citaAgen`) = extract(year_month from current_date())" +
+    orderbyFecha,
+
+  getCitas3Meses:
+    queryCita +
+    "cit.`fecha_citaAgen` between current_date() and  adddate(current_date(),interval 3 month)" +
+    orderbyFecha,
+
+  getCitasEntreFechas:
+    queryCita + "cit.`fecha_citaAgen` between ? and ? " + orderbyFecha,
+
+  getCita:
+    queryCita + "cit.`fecha_citaAgen` = ? AND cit.`horaIni_citaAgen` = ?;",
+
+  createCita:
+    "INSERT INTO  citaAgendada_tbl (fecha_citaAgen , horaIni_citaAgen ,  horaFin_citaAgen , id_paciente ,moti_citaAgen , esta_citaAgen,`id_consulta_tratam`)   VALUES (?,?,?,?,?,?,?)",
+
+  updateCita:
+    "UPDATE  citaAgendada_tbl SET ? WHERE fecha_citaAgen = ? AND horaIni_citaAgen = ?",
+
+  deleteCita:
+    "DELETE FROM citaAgendada_tbl WHERE  fecha_citaAgen  = ? AND  horaIni_citaAgen  = ?;",
+
+  //Futuras Citas
+
+  getCitasPendPac:
+    "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  ;",
+
+  getCitasPendPacFech:
+    "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  AND `fecha_citaAgen` between ? and ?  ORDER BY `fecha_citaAgen` ASC;",
+};

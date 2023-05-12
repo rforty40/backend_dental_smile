@@ -1,0 +1,268 @@
+import { Router } from "express";
+
+//Historial y detalle consulta
+import {
+  getConsultas,
+  createConsulta,
+  updateConsulta,
+  deleteConsulta,
+  getDetalleConsulta,
+  createSignoVital,
+  updateSignoVital,
+} from "../controllers/consulta.controllers.js";
+
+//Examenes estomatonagtico
+import {
+  createExamen,
+  updateExamen,
+  getEnfermedadesCIE,
+  deleteExamen,
+  getExamenesConsulta,
+} from "../controllers/examenes.controllers.js";
+
+//Planes de Diagnostico
+import {
+  getPlanesConsulta,
+  createPlan,
+  updatePlan,
+  deletePlan,
+} from "../controllers/planes.controllers.js";
+
+//Dignosticos
+import {
+  getDiagnosConsulta,
+  createDiagnos,
+  updateDiagnos,
+  deleteDiagnos,
+} from "../controllers/diagnosticos.controllers.js";
+
+//Tratamientos
+import {
+  getTratamConsulta,
+  createTratam,
+  updateTratam,
+  deleteTratam,
+  createCompli,
+  updateCompli,
+  deleteCompli,
+  createProced,
+  deleteProced,
+  createPresc,
+  updatePresc,
+  deletePresc,
+} from "../controllers/tratamientos.controllers.js";
+
+//pagos
+import {
+  getPagosConsulta,
+  createIngreso,
+  updateIngreso,
+  deleteIngreso,
+} from "../controllers/ingresos.controllers.js";
+
+//router
+const router = Router();
+
+//historial clinico
+router.get(
+  "/pacientes/:id_paciente/historial/:filtro/:prm1/:prm2",
+  getConsultas
+);
+
+//consultas
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/detalle/:seccion",
+  getDetalleConsulta
+);
+router.post("/pacientes/:id_paciente/consultas/create", createConsulta);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/update",
+  updateConsulta
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/delete",
+  deleteConsulta
+);
+
+//signos vitales
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/signos_vitales/create",
+  createSignoVital
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/signos_vitales/update/:id_signo",
+  updateSignoVital
+);
+
+//enfermedades CIE
+router.get("/enfermedades/:busqueda", getEnfermedadesCIE);
+
+//examenes estomatonagtico
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/examenes",
+  getExamenesConsulta
+);
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/examenes/create",
+  createExamen
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/examenes/update/:id_examen",
+  updateExamen
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/examenes/delete/:id_examen",
+  deleteExamen
+);
+
+//planes diagnostico terapeuticos educacional
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/planes",
+  getPlanesConsulta
+);
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/planes/create",
+  createPlan
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/planes/update/:id_plan",
+  updatePlan
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/planes/delete/:id_plan",
+  deletePlan
+);
+
+//Diagnosticos
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos",
+  getDiagnosConsulta
+);
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos/create",
+  createDiagnos
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos/update/:id_diag",
+  updateDiagnos
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos/delete/:id_diag",
+  deleteDiagnos
+);
+
+//Tratamientos
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos",
+  getTratamConsulta
+);
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/create",
+  createTratam
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/update/:id_tratam",
+  updateTratam
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/delete/:id_tratam",
+  deleteTratam
+);
+
+//Complicaciones
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones/create",
+  createCompli
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones/update/:id_compli",
+  updateCompli
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones/delete/:id_compli",
+  deleteCompli
+);
+
+//Procedimientos
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/procedimientos/create",
+  createProced
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/procedimientos/delete/:id_proced",
+  deleteProced
+);
+
+//prescripciones
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones/create",
+  createPresc
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones/update/:id_presc",
+  updatePresc
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones/delete/:id_presc",
+  deletePresc
+);
+
+//pagos
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/pagos",
+  getPagosConsulta
+);
+router.post(
+  "/pacientes/:id_paciente/consultas/:id_consulta/pagos/create",
+  createIngreso
+);
+router.put(
+  "/pacientes/:id_paciente/consultas/:id_consulta/pagos/update/:id_ingreso",
+  updateIngreso
+);
+router.delete(
+  "/pacientes/:id_paciente/consultas/:id_consulta/pagos/delete/:id_ingreso",
+  deleteIngreso
+);
+//
+export default router;
+
+/*
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones",
+  getPrescTratam
+);
+
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/procedimientos",
+  getProcedTratam
+);
+
+router.get(
+  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones",
+  getCompliTratam
+);
+
+//Complicaciones de Tratamientos
+import {
+  getCompliTratam,
+  createCompli,
+  updateCompli,
+  deleteCompli,
+} from "../controllers/complicaciones.controllers.js";
+
+//Procedimientos de Tratamientos
+import {
+  getProcedTratam,
+  createProced,
+  deleteProced,
+} from "../controllers/proced_tratam.controllers.js";
+
+//Prescripciones de Tratamientos
+import {
+  getPrescTratam,
+  createPresc,
+  updatePresc,
+  deletePresc,
+} from "../controllers/prescripciones.controllers.js";
+*/
