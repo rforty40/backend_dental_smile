@@ -16,6 +16,9 @@ export const getCitas = async (req, res) => {
     //seleccionar filtro del where
     let queryCitas;
     switch (req.params.filtro) {
+      case "all":
+        queryCitas = consultasCitas.getAllCitas;
+        break;
       case "pendientes":
         queryCitas = consultasCitas.getCitasPendientes;
         break;
