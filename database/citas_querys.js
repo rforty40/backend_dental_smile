@@ -1,7 +1,7 @@
 // const queryCita =
 //   "SELECT  case when cit.`fecha_citaAgen` = current_date() then 'Hoy' when cit.`fecha_citaAgen` = DATE_SUB(current_date(), INTERVAL -1 DAY) then 'Mañana' when WEEKOFYEAR(cit.`fecha_citaAgen`) =  WEEKOFYEAR(current_date()) then 'Esta semana' when extract(month from cit.`fecha_citaAgen`) = extract(month from current_date()) then 'Este mes' else traducirMes(monthname(cit.`fecha_citaAgen`)) end as 'Cuando', cit.`fecha_citaAgen` as fecha_cita , TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaIni_citaAgen`)),'%H:%i') as 'hora_inicio', TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaFin_citaAgen`)),'%H:%i') as 'hora_fin',pac. `id_paciente`, concat_ws(' ',pac.`priNom_paciente`,pac.`segNom_paciente`,pac.`priApe_paciente`,pac.`segApe_paciente`) as 'Paciente',pac.`eda_paciente`,if(pac.`telRes_paciente` = null, pac.`tel_paciente`,pac.`telRes_paciente`) as 'Telefono', cit.`moti_citaAgen`, cit.`esta_citaAgen` FROM `citaAgendada_tbl` as cit INNER JOIN `paciente_tbl` as pac ON cit.`id_paciente` = pac.`id_paciente` WHERE ";
 const queryCita =
-  "SELECT  case when cit.`fecha_citaAgen` = current_date() then 'Hoy' when cit.`fecha_citaAgen` = DATE_SUB(current_date(), INTERVAL -1 DAY) then 'Mañana' when WEEKOFYEAR(cit.`fecha_citaAgen`) =  WEEKOFYEAR(current_date()) then 'Esta semana' when extract(month from cit.`fecha_citaAgen`) = extract(month from current_date()) then 'Este mes' else traducirMes(monthname(cit.`fecha_citaAgen`)) end as 'Cuando',DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`fecha_citaAgen`)),'%Y/%m/%d') as fecha_cita ,TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaIni_citaAgen`)),'%H:%i') as 'hora_inicio', TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaFin_citaAgen`)),'%H:%i') as 'hora_fin',pac. `id_paciente`, concat_ws(' ',pac.`priNom_paciente`,pac.`segNom_paciente`,pac.`priApe_paciente`,pac.`segApe_paciente`) as 'Paciente',pac.`eda_paciente`,if(pac.`telRes_paciente` = null, pac.`tel_paciente`,pac.`telRes_paciente`) as 'Telefono', cit.`moti_citaAgen`, cit.`esta_citaAgen` FROM `citaAgendada_tbl` as cit INNER JOIN `paciente_tbl` as pac ON cit.`id_paciente` = pac.`id_paciente` WHERE ";
+  "SELECT  case when cit.`fecha_citaAgen` = current_date() then 'Hoy' when cit.`fecha_citaAgen` = DATE_SUB(current_date(), INTERVAL -1 DAY) then 'Mañana' when WEEKOFYEAR(cit.`fecha_citaAgen`) =  WEEKOFYEAR(current_date()) then 'Esta semana' when extract(month from cit.`fecha_citaAgen`) = extract(month from current_date()) then 'Este mes' else traducirMes(monthname(cit.`fecha_citaAgen`)) end as 'Cuando',DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`fecha_citaAgen`)),'%Y/%m/%d') as fecha_cita ,TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaIni_citaAgen`)),'%H:%i') as 'hora_inicio', TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(cit.`horaFin_citaAgen`)),'%H:%i') as 'hora_fin',pac.`id_paciente`, concat_ws(' ',pac.`priNom_paciente`,pac.`segNom_paciente`,pac.`priApe_paciente`,pac.`segApe_paciente`) as 'Paciente',pac.`eda_paciente`,if(pac.`telRes_paciente` = null, pac.`tel_paciente`,pac.`telRes_paciente`) as 'Telefono', cit.`moti_citaAgen`, cit.`esta_citaAgen` FROM `citaAgendada_tbl` as cit INNER JOIN `paciente_tbl` as pac ON cit.`id_paciente` = pac.`id_paciente` WHERE ";
 
 const orderbyFecha = " ORDER BY cit.`fecha_citaAgen` ASC; ";
 
@@ -60,9 +60,17 @@ export const consultasCitas = {
 
   //Futuras Citas
 
+  // getCitasPendPac:
+  //   "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  ORDER BY `fecha_citaAgen` ASC ;",
+
+  // getCitasPendPacFech:
+  //   "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  AND `fecha_citaAgen` between ? and ?  ORDER BY `fecha_citaAgen` ASC;",
+
   getCitasPendPac:
-    "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  ORDER BY `fecha_citaAgen` ASC ;",
+    queryCita +
+    " cit.`id_paciente` = ?  AND  cit.`esta_citaAgen` = ?  ORDER BY cit.`fecha_citaAgen` ASC ;",
 
   getCitasPendPacFech:
-    "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  AND `fecha_citaAgen` between ? and ?  ORDER BY `fecha_citaAgen` ASC;",
+    queryCita +
+    "cit.`id_paciente` = ?  AND  cit.`esta_citaAgen` = ?  AND cit.`fecha_citaAgen` between ? and ?  ORDER BY cit.`fecha_citaAgen` ASC;",
 };
