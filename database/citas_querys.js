@@ -61,7 +61,7 @@ export const consultasCitas = {
   //Futuras Citas
 
   getCitasPendPac:
-    "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  ;",
+    "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  ORDER BY `fecha_citaAgen` ASC ;",
 
   getCitasPendPacFech:
     "SELECT * FROM `citaAgendada_tbl` WHERE `id_paciente` = ?  AND  `esta_citaAgen` = ?  AND `fecha_citaAgen` between ? and ?  ORDER BY `fecha_citaAgen` ASC;",

@@ -203,7 +203,7 @@ export const getCitasPendPac = async (req, res) => {
     if (result.length === 0) {
       handleHttpError(
         res,
-        new Error("No se encontraron citas pendientes del paciente"),
+        new Error("No se encontraron citas en este estado y rango de fecha"),
         "getCitasPendPac",
         404
       );
