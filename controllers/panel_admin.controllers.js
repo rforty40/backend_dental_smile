@@ -71,7 +71,7 @@ export const getPanelAdmin = async (req, res) => {
           [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
             consulta.id_consulta,
           ]);
-          consulta.diagnositcos = resultD;
+          consulta.diagnosticos = resultD;
 
           //agregar Tratamientos
           [resultT] = await poolDB.query(consultasConsultas.getTratamientos, [
@@ -90,7 +90,7 @@ export const getPanelAdmin = async (req, res) => {
         }
       }
       //mostrar resultados
-      result.unshift(result.length); //agregar cantidad de registros
+      // result.unshift(result.length); //agregar cantidad de registros
       res.json(result);
       console.log(req.params.tabla + " traidos desde la BD");
     }

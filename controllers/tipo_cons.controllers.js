@@ -101,14 +101,25 @@ export const updateTipoConsulta = async (req, res) => {
       req.params.id_tipoConsul,
     ]);
 
+    let result2;
     //actualizar tipo de pago
-    const [result2] = await poolDB.query(consultasTipoPago.updateTipoPago, [
-      {
-        desc_tipPago: `Pago por Consulta - ${req.body.tipo_tipoConsul}`,
-        prec_tipPago: req.body.prec_tipPago,
-      }, //set
-      idtipoPago[0].id_tipPago, //id
-    ]);
+    if (idtipoPago.length > 0) {
+      [result2] = await poolDB.query(consultasTipoPago.updateTipoPago, [
+        {
+          desc_tipPago: `Pago por Consulta - ${req.body.tipo_tipoConsul}`,
+          prec_tipPago: req.body.prec_tipPago,
+        }, //set
+        idtipoPago[0].id_tipPago, //id
+      ]);
+    } else {
+      //registro nuevo tipo de pago
+      [result2] = await poolDB.query(consultasTipoPago.createTipoPago, [
+        `Pago por Consulta - ${req.body.tipo_tipoConsul}`,
+        req.body.prec_tipPago,
+        null, //id proced
+        req.params.id_tipoConsul, //id tipo Consulta
+      ]);
+    }
 
     //comprobar retorno de valores
     if (result.affectedRows === 0 || result2.affectedRows === 0) {
