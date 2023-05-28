@@ -179,7 +179,7 @@ export const updateProcedimiento = async (req, res) => {
     //actualizar procedimiento
     const [result] = await poolDB.query(consultasProcedimientos.updateProced, [
       {
-        cod_proced: req.body.tipo_tipoConsul,
+        cod_proced: req.body.cod_proced,
         nom_proced: req.body.nom_proced,
         desc_proced: req.body.desc_proced,
       }, //SET
@@ -192,13 +192,24 @@ export const updateProcedimiento = async (req, res) => {
     ]);
 
     //actualizar tipo de pago
-    const [result2] = await poolDB.query(consultasTipoPago.updateTipoPago, [
-      {
-        desc_tipPago: `Pago por procedimiento - ${req.body.nom_proced}`,
-        prec_tipPago: req.body.prec_proced,
-      }, //set
-      idtipoPago[0].id_tipPago, //id
-    ]);
+    let result2;
+    if (idtipoPago.length > 0) {
+      [result2] = await poolDB.query(consultasTipoPago.updateTipoPago, [
+        {
+          desc_tipPago: `Pago por procedimiento - ${req.body.nom_proced}`,
+          prec_tipPago: req.body.prec_proced,
+        }, //set
+        idtipoPago[0].id_tipPago, //id
+      ]);
+    } else {
+      //registro de nuevo tipo de pago
+      [result2] = await poolDB.query(consultasTipoPago.createTipoPago, [
+        `Pago por Procedimiento - ${req.body.nom_proced}`,
+        req.body.prec_proced, //precio
+        req.params.id_proced, //id proced
+        null, //id tipo Proced
+      ]);
+    }
 
     //comprobar retorno de valores
     if (result.affectedRows === 0 || result2.affectedRows === 0) {
