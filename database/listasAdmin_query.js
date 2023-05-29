@@ -49,11 +49,17 @@ export const consultasTiposTratam = {
     "DELETE FROM  `tipoTratamiento_tbl` WHERE  `id_tipoTratam`= ?;",
 };
 export const consultasProcedimientos = {
+  // getTodosLosProced:
+  //   "SELECT concat_ws(' ',`cod_nomProced`,`nombre_nomProced`) AS 'proced_odonto' FROM `nomProcedimiento_tbl` order by `cod_nomProced` ASC",
+
   getTodosLosProced:
-    "SELECT concat_ws(' ',`cod_nomProced`,`nombre_nomProced`) AS 'proced_odonto' FROM `nomProcedimiento_tbl` order by `cod_nomProced` ASC",
+    "SELECT `cod_nomProced`,`nombre_nomProced` FROM `nomProcedimiento_tbl` order by `cod_nomProced` ASC",
+
+  // getBusquedaProced:
+  //   "SELECT  concat_ws(' ',`cod_nomProced`,`nombre_nomProced`) AS 'proced_odonto' FROM `nomProcedimiento_tbl` WHERE `cod_nomProced` like concat('%',?,'%')  OR match(`nombre_nomProced`) against (?) OR `nombre_nomProced` like concat('%',?,'%') ORDER BY match(`nombre_nomProced`) against (?) desc;",
 
   getBusquedaProced:
-    "SELECT  concat_ws(' ',`cod_nomProced`,`nombre_nomProced`) AS 'proced_odonto' FROM `nomProcedimiento_tbl` WHERE `cod_nomProced` like concat('%',?,'%')  OR match(`nombre_nomProced`) against (?) OR `nombre_nomProced` like concat('%',?,'%') ORDER BY match(`nombre_nomProced`) against (?) desc;",
+    "SELECT  `cod_nomProced`,`nombre_nomProced` FROM `nomProcedimiento_tbl` WHERE `cod_nomProced` like concat('%',?,'%')  OR match(`nombre_nomProced`) against (?) OR `nombre_nomProced` like concat('%',?,'%') ORDER BY match(`nombre_nomProced`) against (?) desc;",
 
   getTitulos: "SELECT * FROM `tituloProcedimiento_tbl`;",
 
@@ -66,8 +72,11 @@ export const consultasProcedimientos = {
   getNomProced:
     "SELECT nomPro.`cod_nomProced`, nomPro.`nombre_nomProced` FROM `nomProcedimiento_tbl` as nomPro INNER JOIN  `subtiProcedimiento_tbl`as subPro ON nomPro.`id_Proce` = subPro.`id_Proce` WHERE  nomPro.`id_Proce` = ? ORDER BY nomPro.`cod_nomProced` ASC;",
 
+  // getTsnomProced:
+  //   "	SELECT nomPro.`cod_nomProced`,nomPro.`nombre_nomProced`,subPro.`subti_Proce`,titPro.`nom_tituloProced` FROM  `nomProcedimiento_tbl` as nomPro INNER JOIN  `subtiProcedimiento_tbl`as subPro ON nomPro.`id_Proce` = subPro.`id_Proce` INNER JOIN `tituloProcedimiento_tbl` as titPro  ON  subPro.`id_tituloProced` = titPro.`id_tituloProced` WHERE nomPro.`cod_nomProced` =  ?;", //"D110"
+
   getTsnomProced:
-    "	SELECT nomPro.`cod_nomProced`,nomPro.`nombre_nomProced`,subPro.`subti_Proce`,titPro.`nom_tituloProced` FROM  `nomProcedimiento_tbl` as nomPro INNER JOIN  `subtiProcedimiento_tbl`as subPro ON nomPro.`id_Proce` = subPro.`id_Proce` INNER JOIN `tituloProcedimiento_tbl` as titPro  ON  subPro.`id_tituloProced` = titPro.`id_tituloProced` WHERE nomPro.`cod_nomProced` =  ?;", //"D110"
+    "	SELECT * FROM  `nomProcedimiento_tbl` as nomPro INNER JOIN  `subtiProcedimiento_tbl`as subPro ON nomPro.`id_Proce` = subPro.`id_Proce` INNER JOIN `tituloProcedimiento_tbl` as titPro  ON  subPro.`id_tituloProced` = titPro.`id_tituloProced` WHERE nomPro.`cod_nomProced` =  ?;", //"D110"
 
   getAllProced:
     "SELECT  proced.`id_proced`, proced.`cod_proced`, proced.`nom_proced`, tipPago.`prec_tipPago` as 'prec_proced', proced.`desc_proced` FROM `procedimiento_tbl` as proced LEFT JOIN  `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` ;",
