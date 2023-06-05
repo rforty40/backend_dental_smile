@@ -7,7 +7,9 @@ import { poolDB } from "../database/db.js";
 //querys
 import {
   consultasConsultas,
+  validarFechaAnio,
   validarFechaEnRango,
+  validarFechaMesAnio,
 } from "../database/consultas_query.js";
 
 //Historial clinico
@@ -29,7 +31,7 @@ export const getConsultas = async (req, res) => {
     if (resultC.length === 0) {
       handleHttpError(
         res,
-        new Error("Historial clinico vacío"),
+        new Error("Historial clínico vacío"),
         "getConsultas",
         404
       );
@@ -63,57 +65,99 @@ export const getConsultas = async (req, res) => {
       const prm2 = req.params.prm2;
 
       //filtrar resultados
+      // switch (req.params.filtro) {
+      //   case "anio":
+      //   case "mes":
+      //   case "dia":
+      //     resultadosFiltrados = resultC.reduce((acc, consActual) => {
+      //       if (JSON.stringify(consActual).includes(prm1)) {
+      //         acc.push(consActual);
+      //       }
+      //       return acc;
+      //     }, []);
+      //     break;
+      //   case "range":
+      //     resultadosFiltrados = resultC.reduce((acc, consActual) => {
+      //       if (validarFechaEnRango(prm1, prm2, consActual.fecha_consulta)) {
+      //         acc.push(consActual);
+      //       } else if (
+      //         consActual.tratamientos.some(
+      //           (tratam) =>
+      //             validarFechaEnRango(prm1, prm2, tratam.Tratamiento) !== false
+      //         )
+      //       ) {
+      //         acc.push(consActual);
+      //       }
+      //       return acc;
+      //     }, []);
+      //     break;
+      //   case "busqueda":
+      //     const prmArr = prm1.trim().split(" ");
+      //     let busqArr = [prm1];
+      //     for (let el of prmArr) {
+      //       busqArr.push(el);
+      //       busqArr.push(el.toUpperCase());
+      //       busqArr.push(el.toLowerCase());
+      //     }
+      //     console.log(busqArr);
+
+      //     resultadosFiltrados = resultC.reduce((acc, consActual) => {
+      //       if (busqArr.some((e) => JSON.stringify(consActual).includes(e))) {
+      //         acc.push(consActual);
+      //       }
+      //       return acc;
+      //     }, []);
+      //     break;
+      //   default:
+      //     resultadosFiltrados = resultC;
+      //     break;
+      // }
       switch (req.params.filtro) {
         case "anio":
-        case "mes":
-        case "dia":
           resultadosFiltrados = resultC.reduce((acc, consActual) => {
-            if (JSON.stringify(consActual).includes(prm1)) {
+            if (validarFechaAnio(prm1, consActual.fecha_consulta)) {
               acc.push(consActual);
             }
             return acc;
           }, []);
           break;
+
+        case "mes":
+          resultadosFiltrados = resultC.reduce((acc, consActual) => {
+            if (validarFechaMesAnio(prm1, consActual.fecha_consulta)) {
+              acc.push(consActual);
+            }
+            return acc;
+          }, []);
+          break;
+
         case "range":
           resultadosFiltrados = resultC.reduce((acc, consActual) => {
             if (validarFechaEnRango(prm1, prm2, consActual.fecha_consulta)) {
               acc.push(consActual);
-            } else if (
-              consActual.tratamientos.some(
-                (tratam) =>
-                  validarFechaEnRango(prm1, prm2, tratam.Tratamiento) !== false
-              )
-            ) {
-              acc.push(consActual);
             }
             return acc;
           }, []);
           break;
-        case "busqueda":
-          const prmArr = prm1.trim().split(" ");
-          let busqArr = [prm1];
-          for (let el of prmArr) {
-            busqArr.push(el);
-            busqArr.push(el.toUpperCase());
-            busqArr.push(el.toLowerCase());
-          }
-          console.log(busqArr);
 
-          resultadosFiltrados = resultC.reduce((acc, consActual) => {
-            if (busqArr.some((e) => JSON.stringify(consActual).includes(e))) {
-              acc.push(consActual);
-            }
-            return acc;
-          }, []);
-          break;
         default:
           resultadosFiltrados = resultC;
           break;
       }
 
       //mostrar historial
-      res.json(resultadosFiltrados);
-      console.log("Historial clinico traido de la BD");
+      if (resultadosFiltrados.length === 0) {
+        handleHttpError(
+          res,
+          new Error("No se encontraron consultas en el rango de fecha"),
+          "getConsultas",
+          404
+        );
+      } else {
+        res.json(resultadosFiltrados);
+      }
+
+      console.log("Historial clínico traido de la BD");
     }
   } catch (error) {
     handleHttpError(res, error, "getConsultas");
@@ -130,7 +174,7 @@ export const getDetalleConsulta = async (req, res) => {
         break;
 
       case "detalle":
-        queryDetalle = consultasConsultas.getDetalleConsulta;
+        queryDetalle = consultasConsultas.getConsultaID;
         break;
 
       default: //signos vitales

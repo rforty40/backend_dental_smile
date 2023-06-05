@@ -16,7 +16,7 @@ router.get("/citas/:filtro/:fechaInicial/:fechaFinal", getCitas);
 router.get("/cita/:fecha_citaAgen/:horaIni_citaAgen", getCita);
 
 //router.post("/cita", createCita);
-router.post("/createCita", validarCitaCreada, createCita);
+router.post("/createCita", /*validarCitaCreada,*/ createCita);
 
 router.put("/updateCita/:fecha_citaAgen/:horaIni_citaAgen", updateCita);
 

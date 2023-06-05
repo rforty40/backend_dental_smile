@@ -86,11 +86,12 @@ router.delete(
 
 //signos vitales
 router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/signos_vitales/create",
+  // "/pacientes/:id_paciente/consultas/:id_consulta/signos_vitales/create",
+  "/pacientes/consultas/:id_consulta/signos_vitales/create",
   createSignoVital
 );
 router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/signos_vitales/update/:id_signo",
+  "/pacientes/consultas/:id_consulta/signos_vitales/update/:id_signo",
   updateSignoVital
 );
 
@@ -98,20 +99,14 @@ router.put(
 router.get("/enfermedades/:busqueda", getEnfermedadesCIE);
 
 //examenes estomatonagtico
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/examenes",
-  getExamenesConsulta
-);
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/examenes/create",
-  createExamen
-);
+router.get("/pacientes/consultas/:id_consulta/examenes", getExamenesConsulta);
+router.post("/pacientes/consultas/:id_consulta/examenes/create", createExamen);
 router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/examenes/update/:id_examen",
+  "/pacientes/consultas/:id_consulta/examenes/update/:id_examen",
   updateExamen
 );
 router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/examenes/delete/:id_examen",
+  "/pacientes/consultas/:id_consulta/examenes/delete/:id_examen",
   deleteExamen
 );
 
