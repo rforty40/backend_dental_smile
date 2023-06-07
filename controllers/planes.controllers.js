@@ -11,11 +11,25 @@ import { consultas_planes } from "../database/planes_query.js";
 export const getPlanesConsulta = async (req, res) => {
   try {
     //ejecutar consulta
-    const [result] = await poolDB.query(consultas_planes.getPlanesConsulta, [
-      req.params.id_consulta,
-    ]);
+    const [resultDiag] = await poolDB.query(
+      consultas_planes.getPlanesConsulta,
+      [req.params.id_consulta, "Diagnóstico"]
+    );
+    const [resultTera] = await poolDB.query(
+      consultas_planes.getPlanesConsulta,
+      [req.params.id_consulta, "Terapéutico"]
+    );
+    const [resultEduc] = await poolDB.query(
+      consultas_planes.getPlanesConsulta,
+      [req.params.id_consulta, "Educacional"]
+    );
+
     //verificar consulta exitosa
-    if (result.length === 0) {
+    if (
+      resultDiag.length === 0 &&
+      resultTera.length === 0 &&
+      resultEduc.length === 0
+    ) {
       handleHttpError(
         res,
         new Error(
@@ -26,7 +40,7 @@ export const getPlanesConsulta = async (req, res) => {
       );
     } else {
       //mostrar Planes
-      res.json(result);
+      res.json([resultDiag, resultTera, resultEduc]);
       console.log(
         "Planes Diagnositco, Terapeuticos, Educacional traidos desde la BD"
       );

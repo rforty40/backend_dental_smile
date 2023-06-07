@@ -105,40 +105,16 @@ router.put("/examen_esto/update/:id_examen", updateExamen);
 router.delete("/examen_esto/delete/:id_examen", deleteExamen);
 
 //planes diagnostico terapeuticos educacional
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/planes",
-  getPlanesConsulta
-);
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/planes/create",
-  createPlan
-);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/planes/update/:id_plan",
-  updatePlan
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/planes/delete/:id_plan",
-  deletePlan
-);
+router.get("/consulta/:id_consulta/planes", getPlanesConsulta);
+router.post("/consulta/:id_consulta/planes/create", createPlan);
+router.put("/planes/update/:id_plan", updatePlan);
+router.delete("/planes/delete/:id_plan", deletePlan);
 
 //Diagnosticos
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos",
-  getDiagnosConsulta
-);
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos/create",
-  createDiagnos
-);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos/update/:id_diag",
-  updateDiagnos
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/diagnosticos/delete/:id_diag",
-  deleteDiagnos
-);
+router.get("/consulta/:id_consulta/diagnosticos", getDiagnosConsulta);
+router.post("/consulta/:id_consulta/diagnosticos/create", createDiagnos);
+router.put("/diagnosticos/update/:id_diag", updateDiagnos);
+router.delete("/diagnosticos/delete/:id_diag", deleteDiagnos);
 
 //Tratamientos
 router.get(
