@@ -26,7 +26,7 @@ export const getTratamConsulta = async (req, res) => {
     if (resultTra.length === 0) {
       handleHttpError(
         res,
-        new Error("Tratamientos no encontrados"),
+        new Error("Sin tratamientos"),
         "getTratamConsulta",
         404
       );
@@ -57,6 +57,9 @@ export const getTratamConsulta = async (req, res) => {
     handleHttpError(res, error, "getTratamConsulta");
   }
 };
+
+//
+
 //registrar Tratamiento
 export const createTratam = async (req, res) => {
   try {
@@ -90,6 +93,7 @@ export const createTratam = async (req, res) => {
     handleHttpError(res, error, "createTratam");
   }
 };
+
 //actualizar Tratamiento
 export const updateTratam = async (req, res) => {
   try {

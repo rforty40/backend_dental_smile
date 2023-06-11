@@ -70,19 +70,10 @@ router.get(
 );
 
 //consultas
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/detalle/:seccion",
-  getDetalleConsulta
-);
+router.get("/consultas/:id_consulta/detalle/:seccion", getDetalleConsulta);
 router.post("/pacientes/:id_paciente/consultas/create", createConsulta);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/update",
-  updateConsulta
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/delete",
-  deleteConsulta
-);
+router.put("/consultas/:id_consulta/update", updateConsulta);
+router.delete("/consultas/:id_consulta/delete", deleteConsulta);
 
 //signos vitales
 router.post(
@@ -117,60 +108,24 @@ router.put("/diagnosticos/update/:id_diag", updateDiagnos);
 router.delete("/diagnosticos/delete/:id_diag", deleteDiagnos);
 
 //Tratamientos
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos",
-  getTratamConsulta
-);
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/create",
-  createTratam
-);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/update/:id_tratam",
-  updateTratam
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/delete/:id_tratam",
-  deleteTratam
-);
+router.get("/consulta/:id_consulta/tratamientos", getTratamConsulta);
+router.post("/consulta/:id_consulta/tratamiento/create", createTratam);
+router.put("/tratamiento/update/:id_tratam", updateTratam);
+router.delete("/tratamiento/delete/:id_tratam", deleteTratam);
 
 //Complicaciones
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones/create",
-  createCompli
-);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones/update/:id_compli",
-  updateCompli
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones/delete/:id_compli",
-  deleteCompli
-);
+router.post("/tratamiento/:id_tratam/complicacion/create", createCompli);
+router.put("/complicacion/update/:id_compli", updateCompli);
+router.delete("/complicacion/delete/:id_compli", deleteCompli);
 
 //Procedimientos
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/procedimientos/create",
-  createProced
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/procedimientos/delete/:id_proced",
-  deleteProced
-);
+router.post("/tratamiento/:id_tratam/procedimiento/create", createProced);
+router.delete("/tratamiento/procedimiento/delete/:id_proced", deleteProced);
 
 //prescripciones
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones/create",
-  createPresc
-);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones/update/:id_presc",
-  updatePresc
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones/delete/:id_presc",
-  deletePresc
-);
+router.post("/tratamiento/:id_tratam/prescripcion/create", createPresc);
+router.put("/prescripcion/update/:id_presc", updatePresc);
+router.delete("/prescripcion/delete/:id_presc", deletePresc);
 
 //pagos
 router.get(
