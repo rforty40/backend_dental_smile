@@ -10,7 +10,6 @@ import {
   filtrarIngresos,
   queryIngreso,
 } from "../database/ingresos_query.js";
-import e from "cors";
 
 //Mostrar los pagos de la consulta
 export const getPagosConsulta = async (req, res) => {
@@ -42,6 +41,7 @@ export const getPagosConsulta = async (req, res) => {
         404
       );
     } else {
+      console.log("resultTPproced ---> ", resultTPproced);
       //crear lista de pagos de todos los procesos
       let arrTipago = [];
       for (let element of resultTPproced) {
@@ -54,6 +54,8 @@ export const getPagosConsulta = async (req, res) => {
         arrTipago.push(resultTipago[0]);
       }
 
+      console.log("arrTipago --> " + JSON.stringify(arrTipago));
+      console.log("resultPagos ---> ", resultPagos);
       //concatenar pagos y filtrar
       const arrayPagos = resultPagos //filtrar por consulta
         .concat(resultTPcon)
@@ -72,7 +74,8 @@ export const getPagosConsulta = async (req, res) => {
           if (
             !acc.some(
               (valorUnico) =>
-                valorUnico.id_tratam_proced === pagoActual.id_tratam_proced
+                valorUnico.id_tratam_proced === pagoActual.id_tratam_proced &&
+                valorUnico.id_tratam_proced !== null
             )
           ) {
             acc.push(pagoActual);

@@ -128,22 +128,10 @@ router.put("/prescripcion/update/:id_presc", updatePresc);
 router.delete("/prescripcion/delete/:id_presc", deletePresc);
 
 //pagos
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/pagos",
-  getPagosConsulta
-);
-router.post(
-  "/pacientes/:id_paciente/consultas/:id_consulta/pagos/create",
-  createIngreso
-);
-router.put(
-  "/pacientes/:id_paciente/consultas/:id_consulta/pagos/update/:id_ingreso",
-  updateIngreso
-);
-router.delete(
-  "/pacientes/:id_paciente/consultas/:id_consulta/pagos/delete/:id_ingreso",
-  deleteIngreso
-);
+router.get("/consulta/:id_consulta/pagos", getPagosConsulta);
+router.post("/consulta/:id_consulta/pagos/create", createIngreso);
+router.put("/pagos/update/:id_ingreso", updateIngreso);
+router.delete("/pagos/delete/:id_ingreso", deleteIngreso);
 //
 export default router;
 
