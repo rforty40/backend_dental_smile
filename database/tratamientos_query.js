@@ -1,11 +1,11 @@
 export const consultas_tratam = {
   getTratamConsultas:
-    "SELECT  tra.`id_tratam`, tra.`codigoCIE`,cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y-%m-%d') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie.10` as cie ON tra.`codigoCIE` = cie.`codigoCIE` WHERE tra.`id_consulta`= ? ORDER BY tra.`fecha_tratam` DESC; ",
+    "SELECT  tra.`id_tratam`, tra.`codigoCIE`,cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie.10` as cie ON tra.`codigoCIE` = cie.`codigoCIE` WHERE tra.`id_consulta`= ? ORDER BY tra.`fecha_tratam` DESC; ",
 
   // getTratamID: "SELECT * FROM `tratamiento_tbl`  WHERE `id_tratam`=?;",
 
   getTratamID:
-    "SELECT  tra.`id_tratam`, tra.`codigoCIE`,cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y-%m-%d') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie.10` as cie ON tra.`codigoCIE` = cie.`codigoCIE`  WHERE tra.`id_tratam`=?;",
+    "SELECT  tra.`id_tratam`, tra.`codigoCIE`,cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie.10` as cie ON tra.`codigoCIE` = cie.`codigoCIE`  WHERE tra.`id_tratam`=?;",
 
   createTratam:
     "INSERT INTO `tratamiento_tbl` (`id_consulta`,`codigoCIE`) VALUES (?,?);",

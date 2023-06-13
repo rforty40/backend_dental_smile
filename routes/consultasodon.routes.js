@@ -58,6 +58,7 @@ import {
   createIngreso,
   updateIngreso,
   deleteIngreso,
+  getSumPagosConsulta,
 } from "../controllers/ingresos.controllers.js";
 
 //router
@@ -129,6 +130,7 @@ router.delete("/prescripcion/delete/:id_presc", deletePresc);
 
 //pagos
 router.get("/consulta/:id_consulta/pagos", getPagosConsulta);
+router.get("/consulta/:id_consulta/sum_pagos", getSumPagosConsulta);
 router.post("/consulta/:id_consulta/pagos/create", createIngreso);
 router.put("/pagos/update/:id_ingreso", updateIngreso);
 router.delete("/pagos/delete/:id_ingreso", deleteIngreso);

@@ -41,35 +41,36 @@ export const getPagosConsulta = async (req, res) => {
         404
       );
     } else {
-      console.log("resultTPproced ---> ", resultTPproced);
-      //crear lista de pagos de todos los procesos
-      let arrTipago = [];
+      //modificar el tipo de consulta para que sea unico
+      let arrTipConsul = [{ ...resultTPcon[0], id_tratam_proced: 0 }];
+
+      //crear lista de pagos de todos los procedimientos
+      let arrProcedTratam = [];
       for (let element of resultTPproced) {
         const [resultTipago] = await poolDB.query(consultas_ingresos.getTpago, [
           element.id_proced,
         ]);
 
         resultTipago[0].id_tratam_proced = element.id_tratam_proced;
-
-        arrTipago.push(resultTipago[0]);
+        arrProcedTratam.push(resultTipago[0]);
       }
 
-      console.log("arrTipago --> " + JSON.stringify(arrTipago));
-      console.log("resultPagos ---> ", resultPagos);
       //concatenar pagos y filtrar
       const arrayPagos = resultPagos //filtrar por consulta
-        .concat(resultTPcon)
+        .concat(arrTipConsul)
         .reduce((acc, pagoActual) => {
           if (
             !acc.some(
-              (valorUnico) => valorUnico.pago_por === pagoActual.pago_por
+              (valorUnico) =>
+                valorUnico.id_tratam_proced === pagoActual.id_tratam_proced &&
+                valorUnico.id_tratam_proced !== null
             )
           ) {
             acc.push(pagoActual);
           }
           return acc;
         }, [])
-        .concat(arrTipago) //filtrar por procedimientos
+        .concat(arrProcedTratam) //filtrar por procedimientos
         .reduce((acc, pagoActual) => {
           if (
             !acc.some(
@@ -89,6 +90,35 @@ export const getPagosConsulta = async (req, res) => {
     }
   } catch (error) {
     handleHttpError(res, error, "getPagosConsulta");
+  }
+};
+
+//Mostrar la suma de los pagos de la consulta
+export const getSumPagosConsulta = async (req, res) => {
+  try {
+    //ejecutar consultas
+    const [resultPagos] = await poolDB.query(
+      consultas_ingresos.getSumaIngresos,
+      [req.params.id_consulta]
+    );
+
+    //
+
+    //verificar consulta exitosa
+    if (resultPagos.length === 0) {
+      handleHttpError(
+        res,
+        new Error("Suma de pagos incorrecta"),
+        "getSumPagosConsulta",
+        404
+      );
+    } else {
+      //mostrar resultados
+      res.json(resultPagos[0]);
+      console.log("Pagos traidos desde la BD");
+    }
+  } catch (error) {
+    handleHttpError(res, error, "getSumPagosConsulta");
   }
 };
 

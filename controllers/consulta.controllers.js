@@ -43,7 +43,7 @@ export const getConsultas = async (req, res) => {
         [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
           consulta.id_consulta,
         ]);
-        consulta.diagnositcos = resultD;
+        consulta.diagnosticos = resultD;
 
         //agregar Tratamientos
         [resultT] = await poolDB.query(consultasConsultas.getTratamientos, [
@@ -428,7 +428,7 @@ export const getConsultas = async (req, res) => {
         [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
           consulta.id_consulta,
         ]);
-        consulta.diagnositcos = resultD;
+        consulta.diagnosticos = resultD;
 
         //agregar Tratamientos
         [resultT] = await poolDB.query(consultasConsultas.getTratamientos, [

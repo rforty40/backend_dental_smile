@@ -42,7 +42,7 @@ export const filtrarIngresos = () => {
 };
 
 export const queryIngreso =
-  "SELECT `id_ingreso`,`id_consulta`,`text_ingreso` as 'pago_por', `desc_ingreso`,`monto_ingreso` as 'monto',DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`fecha_ingreso`)),'%Y-%m-%d') as 'fecha_create' ,DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`updfecha_ingreso`)),'%Y-%m-%d') as 'fecha_update',`id_tratam_proced` FROM `ingreso_tbl` ";
+  "SELECT `id_ingreso`,`id_consulta`,`text_ingreso` as 'pago_por', `desc_ingreso`,`monto_ingreso` as 'monto',DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`fecha_ingreso`)),'%Y/%m/%d %H:%i:%s') as 'fecha_create' ,DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`updfecha_ingreso`)),'%Y/%m/%d %H:%i:%s') as 'fecha_update',`id_tratam_proced` FROM `ingreso_tbl` ";
 
 export const consultas_ingresos = {
   getTP_consul:
@@ -65,6 +65,9 @@ export const consultas_ingresos = {
   updateIngreso: "UPDATE `ingreso_tbl` SET ? WHERE `id_ingreso` = ?;",
 
   deleteIngreso: "DELETE FROM `ingreso_tbl` WHERE `id_ingreso` = ?;",
+
+  getSumaIngresos:
+    "SELECT SUM(`monto_ingreso`) FROM `ingreso_tbl` WHERE `id_consulta` = ?;",
 };
 
 /*

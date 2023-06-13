@@ -43,6 +43,7 @@ export const getPanelAdmin = async (req, res) => {
         queryFinal =
           consultas_panelAdmin.getConsultas +
           arrPacConProFecha("con.fecha_consulta")[posFiltro];
+
         break;
       default: //procedimientos
         queryFinal =
