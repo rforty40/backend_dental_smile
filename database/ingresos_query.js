@@ -2,7 +2,7 @@ export const filtrarIngresos = () => {
   const notNull = " `id_consulta` is not null ";
   const arrIngresoPor = [
     " WHERE ( match(`text_ingreso`,`desc_ingreso`) against (?) OR `text_ingreso` like concat('%',?,'%') OR `desc_ingreso` like concat('%',?,'%') ) ", //busqueda
-    " WHERE `id_ingreso` > 0 ", //todos
+    " WHERE `id_ingreso` > 0 " /*todos*/,
     " WHERE " + notNull, //ingresos por consulta
     " WHERE " + notNull + " AND `text_ingreso` like 'Pago por Procedimiento%' ", //procedimientos
     " WHERE " + notNull + " AND `text_ingreso` like 'Pago por Consulta%' ", //tipo de consultas
@@ -20,11 +20,12 @@ export const filtrarIngresos = () => {
   ];
 
   const arrIngresoFecha = [
-    " ORDER BY `updfecha_ingreso` DESC;",
-    " AND extract(year from `fecha_ingreso`) = ? ;",
-    " AND extract(year_month from `fecha_ingreso`) = ? ;",
-    " AND `fecha_ingreso` like concat(?,'%') ;",
-    " AND `fecha_ingreso` between ? AND ? ;",
+    " ORDER BY `updfecha_ingreso` DESC ",
+    " AND extract(year from `fecha_ingreso`) = ? ",
+    " AND extract(year_month from `fecha_ingreso`) = ? ",
+    " AND `fecha_ingreso` like concat(?,'%') ",
+    " AND `fecha_ingreso` between ? AND ? ",
+    " ",
   ];
 
   let matrizQueryIngresos = Array.from(

@@ -10,6 +10,7 @@ import {
   filtrarIngresos,
   queryIngreso,
 } from "../database/ingresos_query.js";
+import { consultas_panelAdmin } from "../database/panelAdmin_query.js";
 
 //Mostrar los pagos de la consulta
 export const getPagosConsulta = async (req, res) => {
@@ -198,10 +199,10 @@ export const getIngresos = async (req, res) => {
     //
     const matriz_ingresos = filtrarIngresos();
     const queryFinal = queryIngreso + matriz_ingresos[index_tipo][index_fecha];
-    const [result] = await poolDB.query(queryFinal, arrPrmtros);
+    const [resultIngresos] = await poolDB.query(queryFinal, arrPrmtros);
 
     //verificar consulta exitosa
-    if (result.length === 0) {
+    if (resultIngresos.length === 0) {
       handleHttpError(
         res,
         new Error("Ingresos no encontrados"),
@@ -210,13 +211,52 @@ export const getIngresos = async (req, res) => {
       );
     } else {
       //mostrar resultados
-      res.json(result);
-      console.log("Ingresos traidos desde la BD");
+      if (index_tipo === 9) {
+        res.json(resultIngresos);
+      } else {
+        //nuevo array de consultas
+        // console.log(result);
+        const queryArrCons =
+          index_fecha === 0
+            ? "SELECT `id_consulta` FROM `ingreso_tbl` " +
+              matriz_ingresos[index_tipo][5] +
+              " GROUP BY `id_consulta`"
+            : "SELECT `id_consulta` FROM `ingreso_tbl` " +
+              matriz_ingresos[index_tipo][index_fecha] +
+              " GROUP BY `id_consulta`";
+
+        // console.log(queryArrCons);
+
+        const [resultArrCons] = await poolDB.query(
+          consultas_panelAdmin.getConsultas +
+            " WHERE con.`id_consulta` IN (" +
+            queryArrCons +
+            ");",
+          arrPrmtros
+        );
+
+        // console.log(resultArrCons);
+
+        const arrIngresoCons = resultArrCons.map((consulta) => {
+          // console.log(consulta);
+          return {
+            ...consulta,
+
+            pagos: resultIngresos.filter(
+              (pago) => pago.id_consulta === consulta.id_consulta
+            ),
+          };
+        });
+        res.json(arrIngresoCons);
+        // console.log(arrIngresoCons);
+        console.log("Ingresos traidos desde la BD");
+      }
     }
   } catch (error) {
     handleHttpError(res, error, "getIngresos");
   }
 };
+
 //registrarPago
 export const createIngreso = async (req, res) => {
   try {
