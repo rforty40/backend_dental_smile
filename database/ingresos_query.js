@@ -11,7 +11,7 @@ export const filtrarIngresos = () => {
       " AND `text_ingreso` not like 'Pago por Procedimiento%' AND `text_ingreso` not like 'Pago por Consulta%' ", //otro motivo
     " WHERE " +
       notNull +
-      " AND `text_ingreso` like 'Pago por Procedimiento%' OR `text_ingreso` like 'Pago por Consulta%' ", //proced+tipConsul
+      " AND (`text_ingreso` like 'Pago por Procedimiento%' OR `text_ingreso` like 'Pago por Consulta%') ", //proced+tipConsul
     " WHERE " + notNull + " AND `text_ingreso` not like 'Pago por Consulta%' ", //proced+usuario
     " WHERE " +
       notNull +
@@ -58,10 +58,12 @@ export const consultas_ingresos = {
 
   getAllIngresos: queryIngreso + "ORDER BY `updfecha_ingreso` DESC;",
 
-  getIngresoID: "SELECT * FROM `ingreso_tbl` WHERE `id_ingreso` = ?;",
+  // getIngresoID: "SELECT * FROM `ingreso_tbl` WHERE `id_ingreso` = ?;",
+
+  getIngresoID: queryIngreso + " WHERE `id_ingreso` = ?;",
 
   createIngreso:
-    "INSERT INTO `ingreso_tbl` (`id_consulta`,`text_ingreso`,`desc_ingreso`,`monto_ingreso`,`id_tratam_proced`) VALUES (?,?,?,?,?);",
+    "INSERT INTO `ingreso_tbl` (`text_ingreso`,`desc_ingreso`,`monto_ingreso`) VALUES (?,?,?);",
 
   updateIngreso: "UPDATE `ingreso_tbl` SET ? WHERE `id_ingreso` = ?;",
 

@@ -196,11 +196,13 @@ export const getIngresos = async (req, res) => {
         arrPrmtros.push(prm1, prm2, prm1, prm2);
         break;
     }
+
     //
     const matriz_ingresos = filtrarIngresos();
     const queryFinal = queryIngreso + matriz_ingresos[index_tipo][index_fecha];
     const [resultIngresos] = await poolDB.query(queryFinal, arrPrmtros);
 
+    // console.log("queryFinal -->  ", queryFinal);
     //verificar consulta exitosa
     if (resultIngresos.length === 0) {
       handleHttpError(
@@ -225,7 +227,7 @@ export const getIngresos = async (req, res) => {
               matriz_ingresos[index_tipo][index_fecha] +
               " GROUP BY `id_consulta`";
 
-        // console.log(queryArrCons);
+        // console.log("queryArrCons -->  " + queryArrCons);
 
         const [resultArrCons] = await poolDB.query(
           consultas_panelAdmin.getConsultas +
@@ -269,11 +271,11 @@ export const createIngreso = async (req, res) => {
     } = req.body;
     //realizar registro
     const [result] = await poolDB.query(consultas_ingresos.createIngreso, [
-      id_consulta,
+      // id_consulta,
       text_ingreso,
       desc_ingreso,
       monto_ingreso,
-      id_tratam_proced,
+      // id_tratam_proced,
     ]);
 
     //verificar registro
