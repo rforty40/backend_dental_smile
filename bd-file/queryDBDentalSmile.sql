@@ -31,7 +31,7 @@ CREATE TABLE `antecedente_tbl` (
   PRIMARY KEY (`id_antecedente`),
   KEY `fkn_paciente_antecedente_idx` (`id_paciente`),
   CONSTRAINT `fk_paciente_antecedente` FOREIGN KEY (`id_paciente`) REFERENCES `paciente_tbl` (`id_paciente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `citaagendada_tbl` (
 
 LOCK TABLES `citaagendada_tbl` WRITE;
 /*!40000 ALTER TABLE `citaagendada_tbl` DISABLE KEYS */;
-INSERT INTO `citaagendada_tbl` VALUES ('2023-01-10','14:30:00','15:30:00',2,'Diente flojo','Perdida',NULL),('2023-02-13','08:30:00','10:00:00',2,'Op dental','Perdida',NULL),('2023-02-13','16:30:00','18:00:00',2,'Op dental','Perdida',NULL),('2023-02-14','16:30:00','18:00:00',2,'cita de mañana','Perdida',NULL),('2023-02-17','08:30:00','10:00:00',2,'Op dental v2','Perdida',NULL),('2023-02-20','08:30:00','10:00:00',1,'Limpieza','Perdida',NULL),('2023-02-20','10:30:00','11:30:00',3,'Limpieza','Perdida',NULL),('2023-02-20','14:30:00','16:15:00',4,'Limpieza','Perdida',NULL),('2023-02-22','17:30:00','18:30:00',5,'Limpieza de rutina','Perdida',3),('2023-02-28','08:30:00','10:30:00',8,'Limpieza','Perdida',NULL),('2023-03-25','08:30:00','10:30:00',5,'Limpieza','Perdida',NULL),('2023-04-18','08:30:00','10:30:00',5,'Limpieza FINAL','Perdida',NULL),('2023-05-14','17:30:00','20:14:00',6,'Cambio de ligas de brackets','Perdida',NULL),('2023-05-15','08:30:00','09:30:00',1,'Limpieza','Perdida',NULL),('2023-05-19','07:30:00','09:30:00',6,'Limpieza dental de los viernes v2','Pendiente',NULL),('2023-05-19','11:00:00','12:30:00',7,'texto legible','Pendiente',NULL),('2023-05-20','11:00:00','11:15:00',1,'actualizacion consulta','Pendiente',NULL),('2023-05-20','15:00:00','15:50:00',222,'Primera cita de valeria ACT','Pendiente',NULL),('2023-05-20','18:00:00','19:25:00',222,'cita de Valeria actualizada','Pendiente',NULL),('2023-05-21','15:30:00','16:30:00',7,'v3 Limpieza de rutina','Pendiente',NULL),('2023-05-22','09:00:00','09:15:00',218,'freferff','Pendiente',NULL),('2023-05-23','10:30:00','12:30:00',2,'Diente flojo cita 2','Pendiente',NULL),('2023-06-02','10:15:00','10:45:00',222,' Limpieza Dental','Pendiente',NULL),('2023-06-13','08:30:00','10:30:00',7,'Colocacion de brackets','Pendiente',NULL),('2023-06-14','08:30:00','10:30:00',2,'Limpieza','Pendiente',NULL),('2023-12-12','08:30:00','10:30:00',7,'Dolor de muela en el lateral derecho \ndesde hace 3 días, dificultad para masticar a causa del dolor','Pendiente',NULL);
+INSERT INTO `citaagendada_tbl` VALUES ('2023-01-10','14:30:00','15:30:00',2,'Diente flojo','Perdida',NULL),('2023-02-13','08:30:00','10:00:00',2,'Op dental','Perdida',NULL),('2023-02-13','16:30:00','18:00:00',2,'Op dental','Perdida',NULL),('2023-02-14','16:30:00','18:00:00',2,'cita de mañana','Perdida',NULL),('2023-02-17','08:30:00','10:00:00',2,'Op dental v2','Perdida',NULL),('2023-02-28','08:30:00','10:30:00',8,'Limpieza','Perdida',NULL),('2023-05-20','11:00:00','11:15:00',1,'actualizacion consulta','Perdida',NULL),('2023-05-20','15:00:00','16:00:00',222,'Primera cita de valeria ACT','Perdida',NULL),('2023-05-20','18:00:00','19:25:00',222,'cita de Valeria actualizada','Perdida',NULL),('2023-05-26','07:30:00','09:30:00',6,'Limpieza dental de los viernes v2','Perdida',NULL),('2023-05-26','10:00:00','13:00:00',1,'Limpieza','Perdida',NULL),('2023-05-26','15:45:00','17:15:00',222,'Arreglo de brackets','Perdida',NULL),('2023-05-27','14:30:00','15:50:00',1,'Cita de forty','Perdida',NULL),('2023-05-28','07:45:00','09:45:00',2,'rferf','Perdida',NULL),('2023-05-28','12:45:00','14:45:00',2,'Diente flojo cita 2','Perdida',NULL),('2023-05-28','15:45:00','17:15:00',7,'v3 Limpieza de rutina','Perdida',NULL),('2023-06-02','08:15:00','09:15:00',222,' Limpieza Dental','Perdida',NULL),('2023-06-02','14:00:00','16:15:00',222,'dewdwede','Perdida',NULL),('2023-06-04','08:00:00','09:31:00',222,'dwdwdwd','Perdida',NULL),('2023-06-17','08:15:00','10:15:00',2,'Limpieza','Perdida',NULL),('2023-06-17','11:15:00','14:15:00',7,'Colocacion de brackets','Perdida',NULL),('2023-07-04','09:00:00','13:00:00',222,'Cita de valeria actualizada ','Pendiente',NULL),('2023-08-09','07:15:00','08:15:00',222,'cita de Agosto','Pendiente',NULL),('2023-08-09','08:45:00','09:45:00',222,'segunda cita de agosto','Pendiente',NULL),('2023-09-07','10:30:00','13:15:00',222,'septiembre cita','Pendiente',NULL),('2023-12-12','08:30:00','10:30:00',7,'Dolor de muela en el lateral derecho \ndesde hace 3 días, dificultad para masticar a causa del dolor','Pendiente',NULL),('2024-01-20','18:32:00','19:59:00',222,'aaaaaaaaaaaaaaaaaa','Pendiente',NULL),('2024-06-13','07:30:00','09:30:00',222,'cita de Prueba','Pendiente',NULL);
 /*!40000 ALTER TABLE `citaagendada_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `complicaciones_tbl` (
   PRIMARY KEY (`id_compli`),
   KEY `fk_tratamiento_complicaciones_idx` (`id_tratam`),
   CONSTRAINT `fk_tratamiento_complicaciones` FOREIGN KEY (`id_tratam`) REFERENCES `tratamiento_tbl` (`id_tratam`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=258 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `complicaciones_tbl` (
 
 LOCK TABLES `complicaciones_tbl` WRITE;
 /*!40000 ALTER TABLE `complicaciones_tbl` DISABLE KEYS */;
-INSERT INTO `complicaciones_tbl` VALUES (2,1,'Dolor al masticar v2'),(3,1,'Dolor al masticar v3'),(4,1,'Dolor al masticar v4'),(5,1,'Dolor al masticar v5'),(6,2,'Complicacion tratamiento 2'),(7,2,'Complicacion tratamiento 2');
+INSERT INTO `complicaciones_tbl` VALUES (2,1,'Dolor al masticar'),(8,8,'Complicacion tratamiento Amelia 1'),(9,8,'Complicacion tratamiento Amelia 2'),(10,8,'Complicacion tratamiento Amelia 3'),(11,8,'Complicacion tratamiento Amelia 4'),(243,69,'comp1'),(247,69,'comp2'),(248,69,'comp3'),(251,79,'AAAA'),(252,79,'BBBB'),(253,79,'CCCC'),(254,82,'AAAAA'),(255,82,'VBBBBBB'),(256,83,'Comp1'),(257,83,'Comp2');
 /*!40000 ALTER TABLE `complicaciones_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `consulta_tbl` (
   FULLTEXT KEY `full_index_proble` (`probleAct_consulta`),
   CONSTRAINT `fk_tipoConsulta` FOREIGN KEY (`id_tipoConsul`) REFERENCES `tipoconsulta_tbl` (`id_tipoConsul`),
   CONSTRAINT `fkn_consulta_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `paciente_tbl` (`id_paciente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `consulta_tbl` (
 
 LOCK TABLES `consulta_tbl` WRITE;
 /*!40000 ALTER TABLE `consulta_tbl` DISABLE KEYS */;
-INSERT INTO `consulta_tbl` VALUES (2,3,'Extraccion dientes de leche','OD 2 listo para remover','2023-02-14','13:00:00',4),(3,5,'Dolor dolor','caries en op.32','2023-02-14','13:00:00',3),(4,2,'Dolor dolor','caries en op.32','2023-02-14','13:00:00',3),(5,1,'Dolor de muela','Pieza dental #43 rota parcialmente, posiblemente por caries','2023-02-14','10:00:00',4),(6,1,'Dolor de muela en el lateral derecho desde hace 3 días, dificultad para masticar a causa del dolor','Pieza dental #45 rota parcialmente, posiblemente por caries','2023-02-14','10:00:00',4),(7,1,'Arreglo de brackets','Arreglo de brackets','2023-02-14','11:00:00',2),(8,5,'Extraccion dientes de leche','Diente de leche','2023-02-14','13:00:00',4),(9,5,'cita Marzo 01','Diente de leche','2023-03-14','13:00:00',4),(10,5,'cita Marzo 02','Diente de leche','2023-03-17','13:00:00',4),(11,5,'cita Marzo 03','Diente de leche','2023-03-27','13:00:00',4),(12,5,'cita Marzo 04','Diente de leche','2023-03-30','13:00:00',4),(13,5,'cita Abril 01','Diente de leche','2023-04-05','13:00:00',4),(14,5,'cita Abril 02','Diente de leche','2023-04-06','13:00:00',4),(15,5,'cita Abril 03','Diente de leche','2023-04-16','13:00:00',4),(16,5,'cita Agosto 01','Diente de leche','2023-08-16','13:00:00',4),(17,5,'cita Agosto 02','Diente de leche','2023-08-17','13:00:00',4),(18,5,'cita Agosto 03','Diente de leche','2023-08-18','13:00:00',4),(19,5,'cita Enero proximo año','Diente de leche','2024-01-15','13:00:00',4),(20,5,'cita Enero proximo año 02','Diente de leche','2024-01-18','13:00:00',4),(21,5,'cita Enero proximo año 03','Diente de leche','2024-01-20','13:00:00',4),(22,5,'cita Mayo proximo año','Diente de leche','2024-05-24','13:00:00',4),(23,5,'cita ahora now','que te valga vrg','2023-02-22','16:00:00',4),(24,5,'cita esta semana now','que te valga vrg','2023-02-25','16:00:00',4);
+INSERT INTO `consulta_tbl` VALUES (2,3,'Extraccion dientes de leche','OD 2 listo para remover','2023-02-14','13:00:00',4),(3,5,'Dolor dolor 3','caries en op.32','2023-02-14','13:00:00',3),(4,2,'Dolor dolor','caries en op.32','2023-02-14','13:00:00',3),(5,1,'Dolor de muela','Pieza dental #43 rota parcialmente, posiblemente por caries','2023-02-14','10:00:00',4),(6,1,'Dolor de muela en el lateral derecho desde hace 3 días, dificultad para masticar a causa del dolor','Pieza dental #45 rota parcialmente, posiblemente por caries','2023-02-14','10:00:00',4),(7,1,'Arreglo de brackets','Arreglo de brackets','2023-02-14','11:00:00',2),(8,5,'Extracción dientes de leche','Diente de leche','2023-02-14','13:00:00',4),(9,5,'cita Marzo 01','Diente de leche','2023-03-14','13:00:00',4),(10,5,'cita Marzo 02','Diente de leche','2023-03-17','13:00:00',4),(11,5,'cita Marzo 033','Diente de leche','2023-03-27','13:00:00',4),(12,5,'cita Marzo 04','Diente de leche','2023-03-30','13:00:00',4),(13,5,'cita Abril 01','Diente de leche','2023-04-05','13:00:00',4),(14,5,'cita Abril 02','Diente de leche','2023-04-06','13:00:00',4),(15,5,'cita Abril 03','Diente de leche','2023-04-16','13:00:00',4),(23,5,'cita ahora now','que te valga vrg','2023-02-22','16:00:00',4),(24,5,'cita esta semana now','que te valga vrg','2023-02-25','16:00:00',4),(41,8,'xxxxxxxxxxxxxxxxxxxxxxxxxx','ccccccccccccccccccccccccc','2023-06-01','17:10:00',1),(44,222,'La actividad diaria en una clínica dental suele ser muy intensa. Los pacientes van siendo atendidos y van pasando a gabinete continuamente. Mucha gente entra y sale de la clínica al cabo de la jornada. En infinidad de ocasiones el día a día nos consume y no nos paramos a analiza','Muela podrida Muela podrida Muela podrida En infinidad de ocasiones el día a día nos consume y no nos paramos a analizar algunos indicadores que nos están advirtiendo de que algo no va bien.','2023-06-03','14:05:00',1),(45,6,'Cambio de ligas de brackets','','2023-06-05','11:00:00',17),(46,6,'34r34r3r','34r34r34r','2023-06-05','11:07:00',1),(47,222,'nueva cita agregada para Junio 15 ','dscscsc','2023-06-15','14:30:00',3),(55,1,'arreglar brackets','','2023-06-10','18:29:00',17),(56,6,'eeeeeeeeeee','','2023-06-10','18:44:00',4),(57,264,'Primera cita de JC Forty','','2023-06-12','09:00:00',3),(58,6,'aaaaaaaaa','QQQQQQ','2023-06-11','00:02:00',2),(59,5,'Extracción de pieza dental','Extracción de pieza dental','2023-06-12','09:00:00',4),(60,4,'Primera consulta','','2023-06-13','00:20:00',3),(61,6,'AAAAAAAAA','VVVVVVVVVVV','2023-06-14','10:00:00',4),(62,1,'Chequeo trimestral ','','2023-06-16','14:50:00',1);
 /*!40000 ALTER TABLE `consulta_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +155,7 @@ CREATE TABLE `diagnostico_tbl` (
   KEY `fk_codigoCIE_diagnostico_idx` (`codigoCIE`),
   CONSTRAINT `fk_codigoCIE_diagnostico` FOREIGN KEY (`codigoCIE`) REFERENCES `enfermedades_cie.10` (`codigoCIE`),
   CONSTRAINT `fk_diagnostico` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +164,7 @@ CREATE TABLE `diagnostico_tbl` (
 
 LOCK TABLES `diagnostico_tbl` WRITE;
 /*!40000 ALTER TABLE `diagnostico_tbl` DISABLE KEYS */;
-INSERT INTO `diagnostico_tbl` VALUES (2,8,'Definitivo','K031',NULL),(3,8,'Definitivo','K021',NULL),(4,3,'Definitivo','K021',NULL),(5,3,'Definitivo','K021',NULL);
+INSERT INTO `diagnostico_tbl` VALUES (2,8,'Definitivo','K031','K031 ABRASION DE LOS DIENTES K031 ABRASION DE LOS DIENTES K031 ABRASION DE LOS DIENTESK031 ABRASION DE LOS DIENTES'),(3,8,'Definitivo','K021','K021 CARIES DE LA DENTINA K021 CARIES DE LA DENTINA K021 CARIES DE LA DENTINA K021 CARIES DE LA DENTINA'),(4,3,'Definitivo','K021',NULL),(5,3,'Definitivo','K021',NULL),(6,8,'Presuntivo','K118','DESC DESC DESC DESC DESC DESC DESC DESC'),(9,23,'Presuntivo','K003','AAAAAAAAAAAAAAA'),(10,23,'Definitivo','K102','BBBBBBBBBBBBBBBB'),(14,56,'Definitivo','B002','rrrrrrrrrr'),(22,59,'Definitivo','K021',NULL),(23,57,'Definitivo','B084','AAAAAAAAAAA'),(24,58,'Presuntivo','K021','AAAAAAAA');
 /*!40000 ALTER TABLE `diagnostico_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +211,7 @@ CREATE TABLE `examenestomatonagtico_tlb` (
   KEY `fk_codigoCIE_idx` (`codigoCIE`),
   CONSTRAINT `fk_codigoCIE` FOREIGN KEY (`codigoCIE`) REFERENCES `enfermedades_cie.10` (`codigoCIE`),
   CONSTRAINT `fk_examenEstomato` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +220,7 @@ CREATE TABLE `examenestomatonagtico_tlb` (
 
 LOCK TABLES `examenestomatonagtico_tlb` WRITE;
 /*!40000 ALTER TABLE `examenestomatonagtico_tlb` DISABLE KEYS */;
-INSERT INTO `examenestomatonagtico_tlb` VALUES (1,8,'Labios','K116','Mucocele de glándula saliva. Mucocele de aproximadamente 3mm sobre la glándula'),(3,8,'Lengua','K022','(Actualizado) Caries del cemento en la cara central y lingual de la pieza #45');
+INSERT INTO `examenestomatonagtico_tlb` VALUES (1,8,'Labios','K116','Mucocele de glándula saliva. Mucocele de aproximadamente 3mm sobre la glándula'),(3,8,'Lengua','K022','(Actualizado) Caries del cemento en la cara central y lingual de la pieza #45'),(13,44,'Glándulas salivales','B084',NULL),(14,47,'Labios','C148',NULL);
 /*!40000 ALTER TABLE `examenestomatonagtico_tlb` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +239,7 @@ CREATE TABLE `gasto_tbl` (
   `updfecha_gasto` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_gasto`),
   FULLTEXT KEY `fulltext desc_gasto` (`desc_gasto`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +248,7 @@ CREATE TABLE `gasto_tbl` (
 
 LOCK TABLES `gasto_tbl` WRITE;
 /*!40000 ALTER TABLE `gasto_tbl` DISABLE KEYS */;
-INSERT INTO `gasto_tbl` VALUES (3,'Pago de luz',40.32,'2023-02-21 08:32:23','2023-02-21 08:32:23'),(4,'Arriendo',140.32,'2023-02-21 10:15:07','2023-02-21 10:15:07'),(5,'Gasto de aasas',4.32,'2023-02-21 10:15:23','2023-02-21 10:15:23'),(6,'Compra de x',45.00,'2023-02-21 10:15:54','2023-02-21 10:15:54'),(7,'v2 Compra de x',125.00,'2023-02-21 10:16:03','2023-02-21 10:16:03'),(8,'v3 Compra de x',134.00,'2023-02-21 10:16:11','2023-02-21 10:16:11'),(9,'v4 Compra de x',150.00,'2023-02-21 10:16:20','2023-02-21 10:16:20'),(10,'gasto bla bla bla',150.00,'2023-02-21 10:16:35','2023-02-21 10:16:35'),(11,'Productos de limpieza',20.00,'2022-02-23 05:00:00','2023-02-21 11:33:28');
+INSERT INTO `gasto_tbl` VALUES (3,'Pago de luz',40.32,'2023-02-21 08:32:23','2023-02-21 08:32:23'),(4,'Arriendo',140.56,'2023-02-21 10:15:07','2023-06-17 21:43:53'),(11,'Productos de limpieza',20.00,'2022-02-23 05:00:00','2023-02-21 11:33:28'),(12,'gasto bla bla bla',50.00,'2023-06-16 18:39:16','2023-06-16 18:39:16'),(13,'Pago por arriendo Junio 2023',90.00,'2023-06-17 21:44:40','2023-06-17 21:53:00');
 /*!40000 ALTER TABLE `gasto_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,8 +271,8 @@ CREATE TABLE `ingreso_tbl` (
   PRIMARY KEY (`id_ingreso`),
   KEY `fk_consulta_pago_idx` (`id_consulta`),
   FULLTEXT KEY `index_fulltext_comment_desc` (`text_ingreso`,`desc_ingreso`),
-  CONSTRAINT `fk_consulta_pago` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_consulta_pago` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,7 @@ CREATE TABLE `ingreso_tbl` (
 
 LOCK TABLES `ingreso_tbl` WRITE;
 /*!40000 ALTER TABLE `ingreso_tbl` DISABLE KEYS */;
-INSERT INTO `ingreso_tbl` VALUES (7,NULL,'ingreso creado por el usuario',NULL,24.00,'2023-02-20 07:37:58','2023-02-20 07:37:58',NULL),(8,NULL,' 22 ingreso creado por el usuario',NULL,24.00,'2023-02-20 07:38:32','2023-02-20 07:38:32',NULL),(9,NULL,' hola buenas noches act Pago de prueba v2',NULL,18.00,'2023-02-20 07:40:39','2023-02-21 07:49:31',NULL),(10,8,'Pago por Consulta - Extraccion de pieza dental','Descuento por primera consulta',10.00,'2023-02-22 10:35:59','2023-02-22 10:35:59',NULL),(11,8,'Pago por Procedimiento - III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior','Procedimiento 1',45.43,'2023-02-22 10:37:41','2023-02-22 10:37:41',3),(12,8,'Pago por Procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis adultos','Procedimiento 2',25.00,'2023-02-22 10:44:52','2023-02-22 10:44:52',4);
+INSERT INTO `ingreso_tbl` VALUES (16,8,'Pago por Consulta - Extracción de pieza dental','',15.00,'2023-06-12 10:14:09','2023-06-12 10:14:09',0),(17,57,'Pago por Consulta - Primera consulta','',15.00,'2023-06-12 21:23:06','2023-06-12 21:23:06',0),(18,57,'Pago por procedimiento - XII. Coadyuvante de Servicios Generales - Consulta Profesional - consulta de servicio de diagnóstico proporcionado por el dentista u otro médico que solicita dentista o médico','',15.00,'2023-06-12 21:23:10','2023-06-12 21:23:10',64),(19,58,'Pago por Consulta - Revisión de rutina v4','',28.00,'2023-06-13 01:39:31','2023-06-13 01:39:31',0),(20,58,'Pago por Procedimiento - IV. Endodoncia - Pulpotomía - pulpar, desbridamiento los dientes primarios y permanentes','',25.00,'2023-06-13 01:39:36','2023-06-13 01:39:36',67),(29,59,'Pago por Consulta - Extracción de pieza dental','',15.20,'2023-06-13 16:17:15','2023-06-13 16:17:47',0),(30,59,'Pago por procedimiento - III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior','Descuento 7%',40.35,'2023-06-13 16:17:17','2023-06-13 16:17:54',61),(31,58,'Pago por Procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis infantil','',20.00,'2023-06-13 16:19:12','2023-06-13 16:19:12',52),(33,47,'Pago por Consulta - Primera consulta','',15.00,'2023-06-15 18:46:36','2023-06-15 18:46:36',0),(34,47,'Venta de enjuage bucal oral B','Venta de enjuage bucal oral B',7.50,'2023-06-15 18:46:48','2023-06-16 04:12:02',NULL),(35,58,'Pago por Procedimiento - XI. Ortodoncia - Tratamiento de ortodoncia - limitado tratamiento ortodóncico de la dentición adulta','',35.00,'2023-06-16 00:12:42','2023-06-16 00:12:42',53),(37,58,'Venta de enjuage bucal oral B','',7.50,'2023-06-16 00:14:11','2023-06-16 00:14:11',NULL),(61,NULL,'INGRESOS POR CONSULTORIA A EMILIA GONZALES','',60.00,'2023-06-16 08:00:03','2023-06-16 08:03:07',NULL),(62,NULL,'VENTA DE MICROMOTOR ','',70.00,'2023-06-16 08:02:41','2023-06-16 08:04:39',NULL),(83,47,'Venta de enjuage bucal oral B','',7.50,'2023-06-17 21:38:02','2023-06-17 21:38:02',NULL);
 /*!40000 ALTER TABLE `ingreso_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +340,7 @@ CREATE TABLE `paciente_tbl` (
   PRIMARY KEY (`id_paciente`),
   UNIQUE KEY `ced_paciente_UNIQUE` (`ced_paciente`),
   FULLTEXT KEY `priNom_paciente_Index` (`priNom_paciente`,`segNom_paciente`,`priApe_paciente`,`segApe_paciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=261 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +349,7 @@ CREATE TABLE `paciente_tbl` (
 
 LOCK TABLES `paciente_tbl` WRITE;
 /*!40000 ALTER TABLE `paciente_tbl` DISABLE KEYS */;
-INSERT INTO `paciente_tbl` VALUES (1,'1315354298','Ronny','Bryan','Forty','Palma',23,'Masculino','rbfp90@gmail.com','0985542964',NULL,NULL,NULL,'2023-02-13 02:52:31','2023-05-10 11:00:44'),(2,'1304785425','Marcos','Antonio','Lopes','Palma',27,'Masculino','marcosAnton@gmail.com','0948563212',NULL,NULL,NULL,'2023-02-13 02:52:31','2023-05-10 11:08:20'),(3,'1386975232','Mario',NULL,'Giler',NULL,13,'Masculino','gilermario04@gmail.com',NULL,'Mario Giler','Padre','0985445221','2023-02-13 02:52:31','2023-05-12 05:43:21'),(4,'1305219661','Maria','Angelica','Forty','Benitez',34,'Masculino','mariaAngelical@gmail.com','0984654645','Rosa Santos','Mamá','06556556','2023-02-13 02:52:31','2023-05-13 12:19:54'),(5,'1315127896','Amelia',NULL,'Forty','Cedeño',6,'Femenino',NULL,NULL,'Juan Carlos Forty Palma','Padre','0945236547','2023-02-13 02:52:31','2023-05-12 04:50:47'),(6,'1313327855','Sofía',NULL,'Forty',NULL,4,'Femenino',NULL,NULL,'Javier Forty Palma','Padre','0962351424','2023-02-13 02:52:31','2023-05-10 11:09:27'),(7,'1314783254','Jaynner',NULL,'Forty',NULL,12,'Masculino',NULL,NULL,'Marianela Cedeño','Madre','0955215871','2023-02-13 02:52:31','2023-05-14 02:50:38'),(8,'1305458528','Ana','María','Moreno','Salgado',27,'Femenino','puedeserpa@gmail.com','0985542964',NULL,NULL,NULL,'2023-02-13 03:53:11','2023-05-13 02:42:07'),(10,'1305343335','Ana','Elizabeth','Cedeño',NULL,27,'Femenino','asaxc@gmail.com','0985542964',NULL,NULL,NULL,'2023-02-21 23:32:34','2023-05-12 09:43:24'),(218,'1315354292','Ronny Oficial',NULL,'Forty Oficial',NULL,24,'Masculino',NULL,NULL,NULL,NULL,NULL,'2023-05-12 09:45:01','2023-05-14 02:39:51'),(222,'1204533421','Valeria','Fernanda','Gomez','Perez',15,'Femenino','vale14@gmail.com','0985412265','Ana MarÍa Gonzales Perez','Mamá','0655565935','2023-05-12 11:40:02','2023-05-14 02:39:35');
+INSERT INTO `paciente_tbl` VALUES (1,'1315354298','Ronny','Bryan','Forty','Palma',23,'Masculino','rbfp90@gmail.com','0985542964',NULL,NULL,NULL,'2023-02-13 02:52:31','2023-05-19 04:59:07'),(2,'1304785425','Marcos','Antonio','Lopes','Palma',27,'Masculino','marcosAnton@gmail.com','0948563212',NULL,NULL,NULL,'2023-02-13 02:52:31','2023-05-10 11:08:20'),(3,'1386975232','Mario',NULL,'Giler',NULL,13,'Masculino','gilermario04@gmail.com',NULL,'Mario Giler','Padre','0985445221','2023-02-13 02:52:31','2023-06-04 12:26:38'),(4,'1305219661','Maria','Angelica','Forty','Benitez',34,'Masculino','mariaAngelical@gmail.com','0984654645','Rosa Santos','Mamá','06556556','2023-02-13 02:52:31','2023-05-13 12:19:54'),(5,'1315127896','Amelia',NULL,'Forty','Cedeño',6,'Femenino',NULL,NULL,'Juan Carlos Forty Palma','Padre','0945236547','2023-02-13 02:52:31','2023-05-12 04:50:47'),(6,'1313327855','Sofía',NULL,'Forty',NULL,4,'Femenino',NULL,NULL,'Javier Forty Palma','Padre','0962351424','2023-02-13 02:52:31','2023-06-04 12:23:30'),(7,'1314783254','Jaynner',NULL,'Forty',NULL,12,'Masculino',NULL,NULL,'Marianela Cedeño','Madre','0955215871','2023-02-13 02:52:31','2023-05-14 02:50:38'),(8,'1305458528','Ana','María','Moreno','Salgado',27,'Femenino','puedeserpa@gmail.com','0985542964',NULL,NULL,NULL,'2023-02-13 03:53:11','2023-05-13 02:42:07'),(10,'1305343335','Ana','Elizabeth','Cedeño',NULL,27,'Femenino','asaxc@gmail.com','0985542964',NULL,NULL,NULL,'2023-02-21 23:32:34','2023-05-12 09:43:24'),(222,'1204533421','Valeria','Fernanda','Gomez','Perez',15,'Femenino','vale14@gmail.com','0985412265','Ana MarÍa Gonzales Perez','Mamá','0655565935','2023-05-12 11:40:02','2023-06-04 18:36:57'),(264,'3434352223','Juan','Carlos','Forty','Palma',33,'Masculino','juancarlosforty@hotmail.com','0656564658',NULL,NULL,NULL,'2023-05-23 12:00:36','2023-06-14 04:50:01'),(286,'1315442454','Carolina',NULL,'Herrera',NULL,22,'Femenino',NULL,NULL,NULL,NULL,NULL,'2023-06-17 21:48:30','2023-06-17 21:48:30');
 /*!40000 ALTER TABLE `paciente_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +372,7 @@ CREATE TABLE `plandiagnostico_tbl` (
   KEY `fk_procedimiento_plan_diagnostico_idx` (`id_tipoTratam`),
   CONSTRAINT `fk_planes_Diagnostico_consulta_tbl1` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE,
   CONSTRAINT `fk_tratamiento_planTerapeutico` FOREIGN KEY (`id_tipoTratam`) REFERENCES `tipotratamiento_tbl` (`id_tipoTratam`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -381,7 +381,7 @@ CREATE TABLE `plandiagnostico_tbl` (
 
 LOCK TABLES `plandiagnostico_tbl` WRITE;
 /*!40000 ALTER TABLE `plandiagnostico_tbl` DISABLE KEYS */;
-INSERT INTO `plandiagnostico_tbl` VALUES (1,8,'Diagnóstico','Rayos X',NULL,NULL),(2,8,'Diagnóstico','Otro',NULL,NULL),(3,8,'Terapéutico',NULL,2,'Descripcion generica'),(4,8,'Terapéutico',NULL,4,'Descripcion generica'),(5,8,'Educacional',NULL,NULL,'v2 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(6,8,'Educacional',NULL,NULL,'v3 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(7,8,'Educacional',NULL,NULL,'v4 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%');
+INSERT INTO `plandiagnostico_tbl` VALUES (2,8,'Diagnóstico','Otro',NULL,NULL),(4,8,'Terapéutico',NULL,4,'Descripcion generica 2'),(5,8,'Educacional',NULL,NULL,'v2 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(6,8,'Educacional',NULL,NULL,'v3 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(7,8,'Educacional',NULL,NULL,'v4 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(8,8,'Diagnóstico','Química Sanguinea',NULL,'nuevo plan de diagnostico v2'),(10,8,'Terapéutico',NULL,1,'profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis'),(11,8,'Diagnóstico','Rayos X',NULL,'bbbbbbbbbbbbbb'),(12,8,'Terapéutico',NULL,11,'Aplicar crema en las encías Aplicar crema en las encías Aplicar crema en las encías'),(13,8,'Terapéutico',NULL,5,'Endodoncia Endodoncia Endodoncia Endodoncia Endodoncia Endodoncia');
 /*!40000 ALTER TABLE `plandiagnostico_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,7 +400,7 @@ CREATE TABLE `prescripciones_tbl` (
   PRIMARY KEY (`id_presc`),
   KEY `fk_tratamiento_presc_idx` (`id_tratam`),
   CONSTRAINT `fk_tratamiento_presc` FOREIGN KEY (`id_tratam`) REFERENCES `tratamiento_tbl` (`id_tratam`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -409,7 +409,7 @@ CREATE TABLE `prescripciones_tbl` (
 
 LOCK TABLES `prescripciones_tbl` WRITE;
 /*!40000 ALTER TABLE `prescripciones_tbl` DISABLE KEYS */;
-INSERT INTO `prescripciones_tbl` VALUES (2,1,'No ingerir alimentos en 5 horas',NULL),(3,1,'Crema Dentacure','Aplicar cada 6 horas '),(4,1,'Paracetamol','500g cada 6 horas '),(5,2,'Paracetamol','500g cada 6 horas '),(6,2,'Paracetamol','500g cada 6 horas '),(7,2,'Paracetamol','500g cada 6 horas ');
+INSERT INTO `prescripciones_tbl` VALUES (2,1,'No ingerir alimentos en 5 horas',NULL),(3,1,'Crema Dentacure','Aplicar cada 6 horas '),(4,1,'Paracetamol','500g cada 6 horas '),(8,8,'Paracetamol v1','500g cada 6 horas '),(9,8,'Paracetamol v2','500g cada 6 horas '),(10,8,'aaaaaaaa','bbbbbbbbb '),(21,69,'presc1','dosis1'),(23,69,'presc2',''),(24,82,'AA','A2'),(25,82,'BB','B2');
 /*!40000 ALTER TABLE `prescripciones_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,7 +430,7 @@ CREATE TABLE `procedimiento_tbl` (
   UNIQUE KEY `nom_proced_UNIQUE` (`nom_proced`),
   FULLTEXT KEY `index_nom_proced` (`nom_proced`),
   CONSTRAINT `fk_nomenclatura_procedimiento` FOREIGN KEY (`cod_proced`) REFERENCES `nomprocedimiento_tbl` (`cod_nomProced`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -439,7 +439,7 @@ CREATE TABLE `procedimiento_tbl` (
 
 LOCK TABLES `procedimiento_tbl` WRITE;
 /*!40000 ALTER TABLE `procedimiento_tbl` DISABLE KEYS */;
-INSERT INTO `procedimiento_tbl` VALUES (3,'D1110','II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis adultos','descripcion general'),(4,'D2330','III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior','descripcion general');
+INSERT INTO `procedimiento_tbl` VALUES (3,'D1110','II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis adultos','La profilaxis dental es el procedimiento de higiene dental cuyo objetivo es limpiar las superficies dentarias, retirando el sarro dental o placa calcificada que se encuentra adherido y acumulado en aquellas zonas de los dientes que no son accesibles con el cepillado dental.'),(4,'D2330','III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior','descripcion general'),(30,'D1120','II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis infantil',NULL),(31,'D8040','XI. Ortodoncia - Tratamiento de ortodoncia - limitado tratamiento ortodóncico de la dentición adulta',NULL),(32,'D2712','III. Restaurativo - Coronas - Restauraciones individual sólo -  Corona - 3.4 basado en resina compuesta (indirecta)',NULL),(33,'D9310','XII. Coadyuvante de Servicios Generales - Consulta Profesional - consulta de servicio de diagnóstico proporcionado por el dentista u otro médico que solicita dentista o médico',NULL),(34,NULL,'Profilaxis Especial',NULL),(35,'D3221','IV. Endodoncia - Pulpotomía - pulpar, desbridamiento los dientes primarios y permanentes',NULL);
 /*!40000 ALTER TABLE `procedimiento_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,7 +461,7 @@ CREATE TABLE `signovital_tbl` (
   UNIQUE KEY `id_consulta_UNIQUE` (`id_consulta`),
   KEY `fk_signoVital_tbl_consulta_tbl1_idx` (`id_consulta`),
   CONSTRAINT `fk_signoVital_tbl_consulta_tbl1` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +470,7 @@ CREATE TABLE `signovital_tbl` (
 
 LOCK TABLES `signovital_tbl` WRITE;
 /*!40000 ALTER TABLE `signovital_tbl` DISABLE KEYS */;
-INSERT INTO `signovital_tbl` VALUES (3,'25 ºC','120/80 mm Hg','85 ppm','no se :(',8);
+INSERT INTO `signovital_tbl` VALUES (3,'24','120/80','','',8),(4,'25','120/60','60','50',44),(5,'27','120/81','857','35',3),(6,'23','120/70','','',11),(7,'21','120/80','12','',5),(8,'26','','','',45),(11,'31','','','',46),(12,'24','','','',12),(13,'26','','','',14);
 /*!40000 ALTER TABLE `signovital_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,7 +514,7 @@ CREATE TABLE `tipoconsulta_tbl` (
   PRIMARY KEY (`id_tipoConsul`),
   UNIQUE KEY `tipo_consulta_UNIQUE` (`tipo_tipoConsul`),
   FULLTEXT KEY `full_index_desc` (`tipo_tipoConsul`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,7 +523,7 @@ CREATE TABLE `tipoconsulta_tbl` (
 
 LOCK TABLES `tipoconsulta_tbl` WRITE;
 /*!40000 ALTER TABLE `tipoconsulta_tbl` DISABLE KEYS */;
-INSERT INTO `tipoconsulta_tbl` VALUES (1,'Chequeo trimestral'),(4,'Extraccion de pieza dental'),(3,'Primera consulta'),(2,'Revision de rutina');
+INSERT INTO `tipoconsulta_tbl` VALUES (17,'Cambio o arreglo de aparato de ortondoncia'),(1,'Chequeo trimestral'),(4,'Extraccion de pieza dental'),(3,'Primera consulta'),(2,'Revisión de rutina v4');
 /*!40000 ALTER TABLE `tipoconsulta_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,7 +547,7 @@ CREATE TABLE `tipopago_tbl` (
   FULLTEXT KEY `index_desctipoPago` (`desc_tipPago`),
   CONSTRAINT `fk_tipoPago_tbl_procedimiento_tbl1` FOREIGN KEY (`id_proced`) REFERENCES `procedimiento_tbl` (`id_proced`) ON DELETE CASCADE,
   CONSTRAINT `fk_tipoPago_tbl_tipoConsulta_tbl1` FOREIGN KEY (`id_tipoConsul`) REFERENCES `tipoconsulta_tbl` (`id_tipoConsul`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -556,7 +556,7 @@ CREATE TABLE `tipopago_tbl` (
 
 LOCK TABLES `tipopago_tbl` WRITE;
 /*!40000 ALTER TABLE `tipopago_tbl` DISABLE KEYS */;
-INSERT INTO `tipopago_tbl` VALUES (1,'Pago por Consulta - Chequeo trimestral',20.00,NULL,1),(2,'Pago por Consulta - Revision de rutina',25.00,NULL,2),(3,'Pago por Consulta - Primera consulta',15.00,NULL,3),(4,' v8 cobro descripcion',24.00,NULL,NULL),(5,'Pago por Procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis adultos',25.43,3,NULL),(6,'Pago por Consulta - Extraccion de pieza dental',15.00,NULL,4),(7,'Pago por Procedimiento - III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior',45.43,4,NULL);
+INSERT INTO `tipopago_tbl` VALUES (1,'Pago por Consulta - Chequeo trimestral',20.00,NULL,1),(2,'Pago por Consulta - Revisión de rutina v4',28.00,NULL,2),(3,'Pago por Consulta - Primera consulta',15.00,NULL,3),(5,'Pago por procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis adultos',25.43,3,NULL),(6,'Pago por Consulta - Extracción de pieza dental',15.00,NULL,4),(7,'Pago por procedimiento - III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior',45.80,4,NULL),(11,'Venta de enjuage bucal oral B',7.50,NULL,NULL),(45,'Pago por Procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis infantil',20.00,30,NULL),(46,'Pago por Procedimiento - XI. Ortodoncia - Tratamiento de ortodoncia - limitado tratamiento ortodóncico de la dentición adulta',35.00,31,NULL),(47,'Pago por Procedimiento - III. Restaurativo - Coronas - Restauraciones individual sólo -  Corona - 3.4 basado en resina compuesta (indirecta)',35.00,32,NULL),(48,'Pago por procedimiento - XII. Coadyuvante de Servicios Generales - Consulta Profesional - consulta de servicio de diagnóstico proporcionado por el dentista u otro médico que solicita dentista o médico',15.00,33,NULL),(49,'Pago por Consulta - Cambio o arreglo de aparato de ortondoncia',15.00,NULL,17),(50,'Pago por Procedimiento - Profilaxis Especial',20.00,34,NULL),(51,'Pago por Procedimiento - IV. Endodoncia - Pulpotomía - pulpar, desbridamiento los dientes primarios y permanentes',25.00,35,NULL);
 /*!40000 ALTER TABLE `tipopago_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -573,7 +573,7 @@ CREATE TABLE `tipotratamiento_tbl` (
   `tratam_tipoTratam` varchar(200) NOT NULL,
   PRIMARY KEY (`id_tipoTratam`),
   FULLTEXT KEY `full_index_desc` (`tratam_tipoTratam`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -582,7 +582,7 @@ CREATE TABLE `tipotratamiento_tbl` (
 
 LOCK TABLES `tipotratamiento_tbl` WRITE;
 /*!40000 ALTER TABLE `tipotratamiento_tbl` DISABLE KEYS */;
-INSERT INTO `tipotratamiento_tbl` VALUES (1,'Preventivo','Profilaxis'),(2,'Clínico','Operatoria Dental'),(3,'Curativo','Medicamentos'),(4,'Clínico','Sellante'),(5,'Clínico','Endodoncia');
+INSERT INTO `tipotratamiento_tbl` VALUES (1,'Preventivo','Profilaxis'),(2,'Clínico','Operatoria Dental'),(4,'Clínico','Sellante'),(5,'Clínico','Endodoncia'),(11,'Curativo','Aplicar crema en las encías ');
 /*!40000 ALTER TABLE `tipotratamiento_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -627,7 +627,7 @@ CREATE TABLE `tratamiento_procedimiento_tbl` (
   KEY `fk_Tratamiento_has_procedimiento_Tratamiento1_idx` (`id_tratam`),
   CONSTRAINT `fk_Tratamiento_has_procedimiento_procedimiento1` FOREIGN KEY (`id_proced`) REFERENCES `procedimiento_tbl` (`id_proced`),
   CONSTRAINT `fk_Tratamiento_has_procedimiento_Tratamiento1` FOREIGN KEY (`id_tratam`) REFERENCES `tratamiento_tbl` (`id_tratam`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -636,7 +636,7 @@ CREATE TABLE `tratamiento_procedimiento_tbl` (
 
 LOCK TABLES `tratamiento_procedimiento_tbl` WRITE;
 /*!40000 ALTER TABLE `tratamiento_procedimiento_tbl` DISABLE KEYS */;
-INSERT INTO `tratamiento_procedimiento_tbl` VALUES (3,1,4,'2023-02-19 21:03:21'),(4,1,3,'2023-02-19 21:03:21'),(5,1,3,'2023-02-19 21:03:21'),(6,1,3,'2023-02-19 21:03:21'),(7,1,3,'2023-02-19 21:03:21'),(8,6,3,'2023-02-19 21:03:21'),(9,6,3,'2023-02-19 21:03:21'),(10,2,3,'2023-02-19 21:03:21'),(11,2,4,'2023-02-19 21:03:21'),(12,8,4,'2023-02-22 11:25:15'),(13,8,3,'2023-02-22 11:25:21');
+INSERT INTO `tratamiento_procedimiento_tbl` VALUES (3,1,4,'2023-02-19 21:03:21'),(4,1,3,'2023-02-19 21:03:21'),(8,6,3,'2023-02-19 21:03:21'),(9,6,3,'2023-02-19 21:03:21'),(12,8,4,'2023-02-22 11:25:15'),(13,8,3,'2023-02-22 11:25:21'),(47,69,32,'2023-06-11 02:04:37'),(49,69,31,'2023-06-11 02:10:06'),(50,69,33,'2023-06-11 02:10:06'),(52,78,30,'2023-06-11 05:03:35'),(53,78,31,'2023-06-11 05:03:35'),(61,81,4,'2023-06-12 09:15:55'),(64,82,33,'2023-06-12 21:23:01'),(65,83,3,'2023-06-13 00:20:30'),(66,84,34,'2023-06-13 00:41:40'),(67,85,35,'2023-06-13 01:39:21'),(68,79,32,'2023-06-13 07:48:47');
 /*!40000 ALTER TABLE `tratamiento_procedimiento_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -657,7 +657,7 @@ CREATE TABLE `tratamiento_tbl` (
   KEY `fk_enfermedad_CIE_idx` (`codigoCIE`),
   CONSTRAINT `fk_consulta_tratamiento` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE,
   CONSTRAINT `fk_enfermedad_CIE` FOREIGN KEY (`codigoCIE`) REFERENCES `enfermedades_cie.10` (`codigoCIE`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -666,7 +666,7 @@ CREATE TABLE `tratamiento_tbl` (
 
 LOCK TABLES `tratamiento_tbl` WRITE;
 /*!40000 ALTER TABLE `tratamiento_tbl` DISABLE KEYS */;
-INSERT INTO `tratamiento_tbl` VALUES (1,8,'K021','2023-02-18 01:19:17'),(2,8,'K003','2023-02-18 01:19:17'),(3,8,'K031','2023-02-18 01:19:17'),(5,8,NULL,'2023-02-18 01:19:17'),(6,3,NULL,'2023-02-18 17:42:53'),(7,8,NULL,'2024-05-14 05:00:00'),(8,5,'K028','2023-02-22 11:24:47');
+INSERT INTO `tratamiento_tbl` VALUES (1,8,'K031','2023-02-18 01:19:17'),(6,3,NULL,'2023-02-18 17:42:53'),(8,5,'K028','2023-02-22 11:24:47'),(51,56,'B002','2023-06-10 23:44:53'),(69,8,'K021','2023-06-11 02:04:37'),(78,58,'K021','2023-06-11 05:03:35'),(79,59,'K021','2023-06-12 02:45:59'),(81,59,'K021','2023-06-12 09:00:20'),(82,57,'B084','2023-06-12 21:23:01'),(83,60,NULL,'2023-06-13 00:20:30'),(84,60,NULL,'2023-06-13 00:41:40'),(85,58,'K021','2023-06-13 01:39:21');
 /*!40000 ALTER TABLE `tratamiento_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -679,4 +679,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-18 20:51:17
+-- Dump completed on 2023-06-17 17:08:38
