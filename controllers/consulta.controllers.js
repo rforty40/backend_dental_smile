@@ -64,54 +64,6 @@ export const getConsultas = async (req, res) => {
       const prm1 = req.params.prm1;
       const prm2 = req.params.prm2;
 
-      //filtrar resultados
-      // switch (req.params.filtro) {
-      //   case "anio":
-      //   case "mes":
-      //   case "dia":
-      //     resultadosFiltrados = resultC.reduce((acc, consActual) => {
-      //       if (JSON.stringify(consActual).includes(prm1)) {
-      //         acc.push(consActual);
-      //       }
-      //       return acc;
-      //     }, []);
-      //     break;
-      //   case "range":
-      //     resultadosFiltrados = resultC.reduce((acc, consActual) => {
-      //       if (validarFechaEnRango(prm1, prm2, consActual.fecha_consulta)) {
-      //         acc.push(consActual);
-      //       } else if (
-      //         consActual.tratamientos.some(
-      //           (tratam) =>
-      //             validarFechaEnRango(prm1, prm2, tratam.Tratamiento) !== false
-      //         )
-      //       ) {
-      //         acc.push(consActual);
-      //       }
-      //       return acc;
-      //     }, []);
-      //     break;
-      //   case "busqueda":
-      //     const prmArr = prm1.trim().split(" ");
-      //     let busqArr = [prm1];
-      //     for (let el of prmArr) {
-      //       busqArr.push(el);
-      //       busqArr.push(el.toUpperCase());
-      //       busqArr.push(el.toLowerCase());
-      //     }
-      //     console.log(busqArr);
-
-      //     resultadosFiltrados = resultC.reduce((acc, consActual) => {
-      //       if (busqArr.some((e) => JSON.stringify(consActual).includes(e))) {
-      //         acc.push(consActual);
-      //       }
-      //       return acc;
-      //     }, []);
-      //     break;
-      //   default:
-      //     resultadosFiltrados = resultC;
-      //     break;
-      // }
       switch (req.params.filtro) {
         case "anio":
           resultadosFiltrados = resultC.reduce((acc, consActual) => {

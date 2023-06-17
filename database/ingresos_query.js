@@ -23,7 +23,6 @@ export const filtrarIngresos = () => {
     " ORDER BY `updfecha_ingreso` DESC ",
     " AND extract(year from `fecha_ingreso`) = ? ",
     " AND extract(year_month from `fecha_ingreso`) = ? ",
-    " AND `fecha_ingreso` like concat(?,'%') ",
     " AND `fecha_ingreso` between ? AND ? ",
     " ",
   ];
@@ -63,7 +62,7 @@ export const consultas_ingresos = {
   getIngresoID: queryIngreso + " WHERE `id_ingreso` = ?;",
 
   createIngreso:
-    "INSERT INTO `ingreso_tbl` (`text_ingreso`,`desc_ingreso`,`monto_ingreso`) VALUES (?,?,?);",
+    "INSERT INTO `ingreso_tbl` (`id_consulta`,`text_ingreso`,`desc_ingreso`,`monto_ingreso`,`id_tratam_proced`) VALUES (?,?,?,?,?);",
 
   updateIngreso: "UPDATE `ingreso_tbl` SET ? WHERE `id_ingreso` = ?;",
 

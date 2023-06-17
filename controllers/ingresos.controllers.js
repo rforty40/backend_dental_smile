@@ -173,27 +173,21 @@ export const getIngresos = async (req, res) => {
     switch (req.params.fil_fecha) {
       case "todos":
         index_fecha = 0;
-        arrPrmtros.push(prm1, prm1);
         break;
 
       case "anio":
         index_fecha = 1;
-        arrPrmtros.push(prm1, prm1);
+        arrPrmtros.push(prm1);
         break;
 
       case "mes":
         index_fecha = 2;
-        arrPrmtros.push(prm1, prm1);
-        break;
-
-      case "dia":
-        index_fecha = 3;
-        arrPrmtros.push(prm1, prm1);
+        arrPrmtros.push(prm1);
         break;
 
       default: //range
-        index_fecha = 4;
-        arrPrmtros.push(prm1, prm2, prm1, prm2);
+        index_fecha = 3;
+        arrPrmtros.push(prm1, prm2);
         break;
     }
 
@@ -221,11 +215,11 @@ export const getIngresos = async (req, res) => {
         const queryArrCons =
           index_fecha === 0
             ? "SELECT `id_consulta` FROM `ingreso_tbl` " +
-              matriz_ingresos[index_tipo][5] +
-              " GROUP BY `id_consulta`"
+              matriz_ingresos[index_tipo][4] +
+              " GROUP BY `id_consulta` "
             : "SELECT `id_consulta` FROM `ingreso_tbl` " +
               matriz_ingresos[index_tipo][index_fecha] +
-              " GROUP BY `id_consulta`";
+              " GROUP BY `id_consulta` ";
 
         // console.log("queryArrCons -->  " + queryArrCons);
 
@@ -271,11 +265,11 @@ export const createIngreso = async (req, res) => {
     } = req.body;
     //realizar registro
     const [result] = await poolDB.query(consultas_ingresos.createIngreso, [
-      // id_consulta,
+      id_consulta,
       text_ingreso,
       desc_ingreso,
       monto_ingreso,
-      // id_tratam_proced,
+      id_tratam_proced,
     ]);
 
     //verificar registro
@@ -358,56 +352,3 @@ export const deleteIngreso = async (req, res) => {
     handleHttpError(res, error, "deleteIngreso");
   }
 };
-
-/*
-//Mostrar los pagos de la consulta
-export const getPagosConsulta = async (req, res) => {
-  try {
-    //ejecutar consultas
-    const [resultPagos] = await poolDB.query(
-      consultas_ingresos.getIngresosConsul,
-      [req.params.id_consulta]
-    );
-    const [resultTPcon] = await poolDB.query(consultas_ingresos.getTP_consul, [
-      req.params.id_consulta,
-    ]);
-    const [resultTPproced] = await poolDB.query(
-      consultas_ingresos.getTP_proced,
-      [req.params.id_consulta]
-    );
-
-    //verificar consulta exitosa
-    if (
-      resultPagos.length === 0 &&
-      resultTPcon.length === 0 &&
-      resultTPproced.length == 0
-    ) {
-      handleHttpError(
-        res,
-        new Error("Pagos no encontrados"),
-        "getPagosConsulta",
-        404
-      );
-    } else {
-      //concatenar pagos y filtrar
-      const arrayPagos = resultPagos
-        .concat(resultTPcon, resultTPproced)
-        .reduce((acc, pagoActual) => {
-          if (
-            !acc.find(
-              (valorUnico) => valorUnico.pago_por === pagoActual.pago_por
-            )
-          ) {
-            acc.push(pagoActual);
-          }
-          return acc;
-        }, []);
-      //mostrar resultados
-      res.json(arrayPagos);
-      console.log("Pagos traidos desde la BD");
-    }
-  } catch (error) {
-    handleHttpError(res, error, "getPagosConsulta");
-  }
-};
-*/

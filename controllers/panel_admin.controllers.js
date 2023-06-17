@@ -129,7 +129,7 @@ export const getGanancias = async (req, res) => {
       case "ingresos":
         queryFinal =
           consultas_panelAdmin.getIngresos +
-          arrPacConProFecha("fecha_ingreso")[posFiltro];
+          arrPacConProFecha("ing.fecha_ingreso")[posFiltro];
         break;
       case "sum_gastos":
         queryFinal =

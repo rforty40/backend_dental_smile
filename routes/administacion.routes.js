@@ -129,10 +129,8 @@ router.delete(
 );
 
 //lista de gastos
-router.get(
-  "/administracion/lista_gastos/:fil_tipo/:fil_fecha/:prm1/:prm2/:prm_busq",
-  getGastos
-);
+
+router.get("/administracion/lista_gastos/:fil_fecha/:prm1/:prm2", getGastos);
 router.post("/administracion/lista_gastos/create", createGasto);
 router.put("/administracion/lista_gastos/update/:id_gasto", updateGasto);
 router.delete("/administracion/lista_gastos/delete/:id_gasto", deleteGasto);

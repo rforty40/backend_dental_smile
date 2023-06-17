@@ -15,49 +15,38 @@ import {
 //Mostrar lista de Gastos
 export const getGastos = async (req, res) => {
   try {
-    const prm_busq = req.params.prm_busq;
+    // const prm_busq = req.params.prm_busq;
     const prm1 = req.params.prm1;
     const prm2 = req.params.prm2;
     let queryFinal = queryGastos;
     let arrPrmtros = [];
-    //
-    //filtro por tipo de Gasto
-    if (req.params.fil_tipo === "busqueda") {
-      queryFinal += arrGastosPor[1];
-      arrPrmtros.push(prm_busq, prm_busq);
-    } else {
-      //sin filtro
-      queryFinal += arrGastosPor[0];
-    }
 
     //filtro por fecha
     switch (req.params.fil_fecha) {
       case "todos":
         queryFinal += arrGastosFecha[0];
-        arrPrmtros.push(prm1, prm1);
+
         break;
 
       case "anio":
         queryFinal += arrGastosFecha[1];
-        arrPrmtros.push(prm1, prm1);
+        arrPrmtros.push(prm1);
         break;
 
       case "mes":
         queryFinal += arrGastosFecha[2];
-        arrPrmtros.push(prm1, prm1);
-        break;
-
-      case "dia":
-        queryFinal += arrGastosFecha[3];
-        arrPrmtros.push(prm1, prm1);
+        arrPrmtros.push(prm1);
         break;
 
       default: //range
         queryFinal += arrGastosFecha[4];
-        arrPrmtros.push(prm1, prm2, prm1, prm2);
+        arrPrmtros.push(prm1, prm2);
         break;
     }
     //ejecutar query
+
+    console.log(arrPrmtros);
+    console.log(queryFinal);
     const [result] = await poolDB.query(queryFinal, arrPrmtros);
 
     //verificar consulta exitosa
