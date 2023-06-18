@@ -17,7 +17,7 @@ import consultaRoutes from "./routes/consultasodon.routes.js";
 //conexion DB
 import { poolDB } from "./database/db.js";
 //
-const port = process.env.PORT || 4401;
+const port = parseInt(process.env.PORT);
 //
 const app = express();
 app.use(cors());
@@ -36,7 +36,7 @@ try {
   console.log("conexion exitosa con BD");
   app.listen(port);
   console.log(
-    `Server is listening on port ${port} \n ${process.env.URL_PUBLIC}`
+    `Server is listening on port ${port} \n ${process.env.URL_PUBLIC}${port}`
   );
 } catch (error) {
   console.log("Error en la conexion con la BD --> " + error);
