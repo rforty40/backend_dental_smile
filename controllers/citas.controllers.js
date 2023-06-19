@@ -98,6 +98,8 @@ export const createCita = async (req, res) => {
       moti_citaAgen,
       esta_citaAgen,
     } = req.body;
+
+    console.log("fecha_citaAgen ----> " + fecha_citaAgen);
     //realizar registro
     const [result] = await poolDB.query(consultasCitas.createCita, [
       fecha_citaAgen,
