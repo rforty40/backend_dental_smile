@@ -1,14 +1,19 @@
-//dotenv
-import * as dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
+//variables de entorno
+import {
+  MYSQL_HOST,
+  MYSQL_PORT,
+  MYSQL_USER,
+  MYSQL_PASSWORD,
+  MYSQL_DATABASE,
+} from "../config.js";
 
 //conexion DB
 import { createPool } from "mysql2/promise";
 
 export const poolDB = createPool({
-  host: process.env.MYSQL_HOST,
-  port: parseInt(process.env.MYSQL_PORT),
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
+  host: MYSQL_HOST,
+  port: MYSQL_PORT,
+  user: MYSQL_USER,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
 });

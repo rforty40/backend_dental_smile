@@ -1,7 +1,3 @@
-//dotenv
-import * as dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
-
 //express
 import express from "express";
 
@@ -17,8 +13,10 @@ import authRoutes from "./routes/auth.routes.js";
 
 //conexion DB
 import { poolDB } from "./database/db.js";
-//
-const port = parseInt(process.env.PORT);
+
+//variables de entorno
+import { PORT, URL_PUBLIC } from "./config.js";
+
 //
 const app = express();
 app.use(cors());
@@ -36,10 +34,9 @@ app.use(authRoutes);
 try {
   await poolDB.query("SELECT * FROM `paciente_tbl` LIMIT 1");
   console.log("conexion exitosa con BD");
-  app.listen(port);
-  console.log(
-    `Server is listening on port ${port} \n ${process.env.URL_PUBLIC}${port}`
-  );
+  app.listen(PORT);
+  console.log(`Server is listening on port ${PORT}`);
+  console.log(`URL Dental Smile App = ${URL_PUBLIC}`);
 } catch (error) {
   console.log("Error en la conexion con la BD --> " + error);
   console.log("El servidor no esta en funcionamiento");

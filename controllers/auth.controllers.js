@@ -1,6 +1,5 @@
-//dotenv
-import * as dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
+//variables de entorno
+import { KEY_ADMIN } from "../config.js";
 
 //controlador de errores
 import { handleHttpError } from "../utils/handleError.js";
@@ -16,7 +15,7 @@ export const getLogin = async (req, res) => {
   try {
     //ejecutar consulta
     const [result] = await poolDB.query(verifyLogin, [
-      process.env.KEY_ADMIN,
+      KEY_ADMIN,
       req.body.passwordUser,
     ]);
 
@@ -40,10 +39,7 @@ export const updatePassword = async (req, res) => {
     const oldPass = req.body.passwordUser;
     const newPass = req.body.newPassword;
 
-    const [result] = await poolDB.query(verifyLogin, [
-      process.env.KEY_ADMIN,
-      oldPass,
-    ]);
+    const [result] = await poolDB.query(verifyLogin, [KEY_ADMIN, oldPass]);
 
     //verificar contraseña anterior
     if (result.length === 0) {
@@ -54,10 +50,7 @@ export const updatePassword = async (req, res) => {
         404
       );
     } else {
-      const [result] = await poolDB.query(changePassword, [
-        newPass,
-        process.env.KEY_ADMIN,
-      ]);
+      const [result] = await poolDB.query(changePassword, [newPass, KEY_ADMIN]);
       //verificar cambios
       if (result.affectedRows === 0) {
         handleHttpError(
