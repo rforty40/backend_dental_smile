@@ -2,15 +2,13 @@
 import * as dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
-console.log("process.env", process.env.MYSQL_HOST);
-
 //conexion DB
 import { createPool } from "mysql2/promise";
 
 export const poolDB = createPool({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "1234",
-  database: "dentalSmile_BDv2",
+  host: process.env.MYSQL_HOST,
+  port: parseInt(process.env.MYSQL_PORT),
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 });

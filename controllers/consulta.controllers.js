@@ -148,7 +148,6 @@ export const getDetalleConsulta = async (req, res) => {
     } else {
       //mostrar Consulta
       res.json(result[0]);
-      console.log(req.params.seccion + " de consulta traida de la BD");
     }
   } catch (error) {
     handleHttpError(res, error, "getDetalleConsulta");
@@ -332,77 +331,3 @@ export const updateSignoVital = async (req, res) => {
     handleHttpError(res, error, "updateSignoVital");
   }
 };
-
-/*
-export const getConsultas = async (req, res) => {
-  try {
-    let queryConsulta, resultD, resultT, resultP;
-
-    switch (req.params.filtro) {
-      case "anio":
-        queryConsulta = consultasConsultas.getConsultasAnio;
-        break;
-
-      case "mes":
-        queryConsulta = consultasConsultas.getConsultasMes;
-        break;
-
-      case "dia":
-        queryConsulta = consultasConsultas.getConsultasDia;
-        break;
-
-      case "range":
-        queryConsulta = consultasConsultas.getConsultasRange;
-        break;
-
-      default:
-        queryConsulta = consultasConsultas.getConsultas;
-        break;
-    }
-    //ejecutar consulta
-    const [resultC] = await poolDB.query(queryConsulta, [
-      req.params.id_paciente,
-      req.params.prm1,
-      req.params.prm2,
-    ]);
-    //verificar query
-    if (resultC.length === 0) {
-      handleHttpError(
-        res,
-        new Error("Historial clinico vacío"),
-        "getConsultas",
-        404
-      );
-    } else {
-      //modificar JSON
-      for (let consulta of resultC) {
-        //agregar Diagnosticos
-        [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
-          consulta.id_consulta,
-        ]);
-        consulta.diagnosticos = resultD;
-
-        //agregar Tratamientos
-        [resultT] = await poolDB.query(consultasConsultas.getTratamientos, [
-          consulta.id_consulta,
-        ]);
-        consulta.tratamientos = resultT;
-
-        //agregar Procedimientos
-        for (let tratam of consulta.tratamientos) {
-          [resultP] = await poolDB.query(consultasConsultas.getProcedimientos, [
-            tratam.id_tratam,
-          ]);
-          tratam.procedimientos = resultP;
-        }
-      }
-      //mostrar historial
-      res.json(resultC);
-      console.log("Historial clinico traido de la BD");
-    }
-  } catch (error) {
-    handleHttpError(res, error, "getConsultas");
-  }
-};
-
- */

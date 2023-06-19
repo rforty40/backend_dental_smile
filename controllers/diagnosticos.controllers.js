@@ -37,7 +37,7 @@ export const createDiagnos = async (req, res) => {
   try {
     //extraer datos del body
     const { tipo_diag, codigoCIE, desc_diag } = req.body;
-    console.log(codigoCIE);
+
     //realizar registro
     const [result] = await poolDB.query(consultas_diagnos.createDiagnos, [
       req.params.id_consulta,

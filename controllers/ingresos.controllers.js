@@ -196,7 +196,6 @@ export const getIngresos = async (req, res) => {
     const queryFinal = queryIngreso + matriz_ingresos[index_tipo][index_fecha];
     const [resultIngresos] = await poolDB.query(queryFinal, arrPrmtros);
 
-    // console.log("queryFinal -->  ", queryFinal);
     //verificar consulta exitosa
     if (resultIngresos.length === 0) {
       handleHttpError(
@@ -211,7 +210,7 @@ export const getIngresos = async (req, res) => {
         res.json(resultIngresos);
       } else {
         //nuevo array de consultas
-        // console.log(result);
+
         const queryArrCons =
           index_fecha === 0
             ? "SELECT `id_consulta` FROM `ingreso_tbl` " +
@@ -221,8 +220,6 @@ export const getIngresos = async (req, res) => {
               matriz_ingresos[index_tipo][index_fecha] +
               " GROUP BY `id_consulta` ";
 
-        // console.log("queryArrCons -->  " + queryArrCons);
-
         const [resultArrCons] = await poolDB.query(
           consultas_panelAdmin.getConsultas +
             " WHERE con.`id_consulta` IN (" +
@@ -231,10 +228,7 @@ export const getIngresos = async (req, res) => {
           arrPrmtros
         );
 
-        // console.log(resultArrCons);
-
         const arrIngresoCons = resultArrCons.map((consulta) => {
-          // console.log(consulta);
           return {
             ...consulta,
 
@@ -244,7 +238,7 @@ export const getIngresos = async (req, res) => {
           };
         });
         res.json(arrIngresoCons);
-        // console.log(arrIngresoCons);
+
         console.log("Ingresos traidos desde la BD");
       }
     }

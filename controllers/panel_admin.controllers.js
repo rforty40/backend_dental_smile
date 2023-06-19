@@ -93,7 +93,6 @@ export const getPanelAdmin = async (req, res) => {
       //mostrar resultados
       // result.unshift(result.length); //agregar cantidad de registros
       res.json(result);
-      console.log(req.params.tabla + " traidos desde la BD");
     }
   } catch (error) {
     handleHttpError(res, error, "getPanelAdmin");
@@ -155,7 +154,6 @@ export const getGanancias = async (req, res) => {
     } else {
       //mostrar resultados
       res.json(result);
-      console.log(req.params.tabla + " traidos desde la BD");
     }
   } catch (error) {
     handleHttpError(res, error, "getGanancias");

@@ -1,33 +1,9 @@
 import { Router } from "express";
-
-// import {
-//   getCitas,
-//   createCita,
-//   getCita,
-//   updateCita,
-//   deleteCita,
-//   getCitasPendPac,
-// } from "../controllers/citas.controllers.js";
+import { getLogin, updatePassword } from "../controllers/auth.controllers.js";
 
 const router = Router();
 
-router.get("/login", getLogin);
-
-// router.get("/citas/:filtro/:fechaInicial/:fechaFinal", getCitas);
-
-// router.get("/cita/:fecha_citaAgen/:horaIni_citaAgen", getCita);
-
-// //router.post("/cita", createCita);
-// router.post("/createCita", createCita);
-
-// router.put("/updateCita/:fecha_citaAgen/:horaIni_citaAgen", updateCita);
-
-// router.delete("/deleteCita/:fecha_citaAgen/:horaIni_citaAgen", deleteCita);
-
-// //futuras citas
-// router.get(
-//   "/pacientes/:id_paciente/citas/:esta_citaAgen/:fechaInicial/:fechaFinal",
-//   getCitasPendPac
-// );
+router.post("/login", getLogin);
+router.put("/changePassword", updatePassword);
 
 export default router;

@@ -45,8 +45,6 @@ export const getGastos = async (req, res) => {
     }
     //ejecutar query
 
-    console.log(arrPrmtros);
-    console.log(queryFinal);
     const [result] = await poolDB.query(queryFinal, arrPrmtros);
 
     //verificar consulta exitosa

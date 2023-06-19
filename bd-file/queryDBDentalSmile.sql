@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `administrador_tbl`
+--
+
+DROP TABLE IF EXISTS `administrador_tbl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `administrador_tbl` (
+  `id_administrador` int NOT NULL,
+  `pass_admin` blob NOT NULL,
+  `date_create` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_administrador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `administrador_tbl`
+--
+
+LOCK TABLES `administrador_tbl` WRITE;
+/*!40000 ALTER TABLE `administrador_tbl` DISABLE KEYS */;
+INSERT INTO `administrador_tbl` VALUES (1,_binary '\�{�O1L)\�l���\�<JlS\�A(c�\�ֆ�','2023-06-18 06:29:09','2023-06-19 07:23:12');
+/*!40000 ALTER TABLE `administrador_tbl` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `antecedente_tbl`
 --
 
@@ -272,7 +298,7 @@ CREATE TABLE `ingreso_tbl` (
   KEY `fk_consulta_pago_idx` (`id_consulta`),
   FULLTEXT KEY `index_fulltext_comment_desc` (`text_ingreso`,`desc_ingreso`),
   CONSTRAINT `fk_consulta_pago` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +307,7 @@ CREATE TABLE `ingreso_tbl` (
 
 LOCK TABLES `ingreso_tbl` WRITE;
 /*!40000 ALTER TABLE `ingreso_tbl` DISABLE KEYS */;
-INSERT INTO `ingreso_tbl` VALUES (16,8,'Pago por Consulta - Extracción de pieza dental','',15.00,'2023-06-12 10:14:09','2023-06-12 10:14:09',0),(17,57,'Pago por Consulta - Primera consulta','',15.00,'2023-06-12 21:23:06','2023-06-12 21:23:06',0),(18,57,'Pago por procedimiento - XII. Coadyuvante de Servicios Generales - Consulta Profesional - consulta de servicio de diagnóstico proporcionado por el dentista u otro médico que solicita dentista o médico','',15.00,'2023-06-12 21:23:10','2023-06-12 21:23:10',64),(19,58,'Pago por Consulta - Revisión de rutina v4','',28.00,'2023-06-13 01:39:31','2023-06-13 01:39:31',0),(20,58,'Pago por Procedimiento - IV. Endodoncia - Pulpotomía - pulpar, desbridamiento los dientes primarios y permanentes','',25.00,'2023-06-13 01:39:36','2023-06-13 01:39:36',67),(29,59,'Pago por Consulta - Extracción de pieza dental','',15.20,'2023-06-13 16:17:15','2023-06-13 16:17:47',0),(30,59,'Pago por procedimiento - III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior','Descuento 7%',40.35,'2023-06-13 16:17:17','2023-06-13 16:17:54',61),(31,58,'Pago por Procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis infantil','',20.00,'2023-06-13 16:19:12','2023-06-13 16:19:12',52),(33,47,'Pago por Consulta - Primera consulta','',15.00,'2023-06-15 18:46:36','2023-06-15 18:46:36',0),(34,47,'Venta de enjuage bucal oral B','Venta de enjuage bucal oral B',7.50,'2023-06-15 18:46:48','2023-06-16 04:12:02',NULL),(35,58,'Pago por Procedimiento - XI. Ortodoncia - Tratamiento de ortodoncia - limitado tratamiento ortodóncico de la dentición adulta','',35.00,'2023-06-16 00:12:42','2023-06-16 00:12:42',53),(37,58,'Venta de enjuage bucal oral B','',7.50,'2023-06-16 00:14:11','2023-06-16 00:14:11',NULL),(61,NULL,'INGRESOS POR CONSULTORIA A EMILIA GONZALES','',60.00,'2023-06-16 08:00:03','2023-06-16 08:03:07',NULL),(62,NULL,'VENTA DE MICROMOTOR ','',70.00,'2023-06-16 08:02:41','2023-06-16 08:04:39',NULL),(83,47,'Venta de enjuage bucal oral B','',7.50,'2023-06-17 21:38:02','2023-06-17 21:38:02',NULL);
+INSERT INTO `ingreso_tbl` VALUES (16,8,'Pago por Consulta - Extracción de pieza dental','',15.00,'2023-06-12 10:14:09','2023-06-12 10:14:09',0),(17,57,'Pago por Consulta - Primera consulta','',15.00,'2023-06-12 21:23:06','2023-06-12 21:23:06',0),(18,57,'Pago por procedimiento - XII. Coadyuvante de Servicios Generales - Consulta Profesional - consulta de servicio de diagnóstico proporcionado por el dentista u otro médico que solicita dentista o médico','',15.00,'2023-06-12 21:23:10','2023-06-12 21:23:10',64),(19,58,'Pago por Consulta - Revisión de rutina v4','',28.00,'2023-06-13 01:39:31','2023-06-13 01:39:31',0),(20,58,'Pago por Procedimiento - IV. Endodoncia - Pulpotomía - pulpar, desbridamiento los dientes primarios y permanentes','',25.00,'2023-06-13 01:39:36','2023-06-13 01:39:36',67),(29,59,'Pago por Consulta - Extracción de pieza dental','',15.20,'2023-06-13 16:17:15','2023-06-13 16:17:47',0),(30,59,'Pago por procedimiento - III. Restaurativo - A base de resina compuesta Restauraciones – Directo - a base de resina compuesta - una superficie, anterior','Descuento 7%',40.35,'2023-06-13 16:17:17','2023-06-13 16:17:54',61),(31,58,'Pago por Procedimiento - II. Preventivo (Profilaxis Dental) - Profilaxis - profilaxis infantil','',20.00,'2023-06-13 16:19:12','2023-06-13 16:19:12',52),(33,47,'Pago por Consulta - Primera consulta','',15.00,'2023-06-15 18:46:36','2023-06-15 18:46:36',0),(34,47,'Venta de enjuage bucal oral B','Venta de enjuage bucal oral B',7.50,'2023-06-15 18:46:48','2023-06-16 04:12:02',NULL),(35,58,'Pago por Procedimiento - XI. Ortodoncia - Tratamiento de ortodoncia - limitado tratamiento ortodóncico de la dentición adulta','',35.00,'2023-06-16 00:12:42','2023-06-16 00:12:42',53),(37,58,'Venta de enjuage bucal oral B','',7.50,'2023-06-16 00:14:11','2023-06-16 00:14:11',NULL),(61,NULL,'INGRESOS POR CONSULTORIA A EMILIA GONZALES','',60.00,'2023-06-16 08:00:03','2023-06-16 08:03:07',NULL),(62,NULL,'VENTA DE MICROMOTOR ','',70.00,'2023-06-16 08:02:41','2023-06-16 08:04:39',NULL),(83,47,'Venta de enjuage bucal oral B','',7.50,'2023-06-17 21:38:02','2023-06-17 21:38:02',NULL),(84,2,'Pago por Consulta - Extracción de pieza dental','',15.00,'2023-06-18 08:48:57','2023-06-18 08:48:57',0);
 /*!40000 ALTER TABLE `ingreso_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +398,7 @@ CREATE TABLE `plandiagnostico_tbl` (
   KEY `fk_procedimiento_plan_diagnostico_idx` (`id_tipoTratam`),
   CONSTRAINT `fk_planes_Diagnostico_consulta_tbl1` FOREIGN KEY (`id_consulta`) REFERENCES `consulta_tbl` (`id_consulta`) ON DELETE CASCADE,
   CONSTRAINT `fk_tratamiento_planTerapeutico` FOREIGN KEY (`id_tipoTratam`) REFERENCES `tipotratamiento_tbl` (`id_tipoTratam`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -381,7 +407,7 @@ CREATE TABLE `plandiagnostico_tbl` (
 
 LOCK TABLES `plandiagnostico_tbl` WRITE;
 /*!40000 ALTER TABLE `plandiagnostico_tbl` DISABLE KEYS */;
-INSERT INTO `plandiagnostico_tbl` VALUES (2,8,'Diagnóstico','Otro',NULL,NULL),(4,8,'Terapéutico',NULL,4,'Descripcion generica 2'),(5,8,'Educacional',NULL,NULL,'v2 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(6,8,'Educacional',NULL,NULL,'v3 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(7,8,'Educacional',NULL,NULL,'v4 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(8,8,'Diagnóstico','Química Sanguinea',NULL,'nuevo plan de diagnostico v2'),(10,8,'Terapéutico',NULL,1,'profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis'),(11,8,'Diagnóstico','Rayos X',NULL,'bbbbbbbbbbbbbb'),(12,8,'Terapéutico',NULL,11,'Aplicar crema en las encías Aplicar crema en las encías Aplicar crema en las encías'),(13,8,'Terapéutico',NULL,5,'Endodoncia Endodoncia Endodoncia Endodoncia Endodoncia Endodoncia');
+INSERT INTO `plandiagnostico_tbl` VALUES (2,8,'Diagnóstico','Otro',NULL,NULL),(4,8,'Terapéutico',NULL,4,'Descripcion generica 2'),(5,8,'Educacional',NULL,NULL,'v2 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(6,8,'Educacional',NULL,NULL,'v3 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(7,8,'Educacional',NULL,NULL,'v4 Técnica de cepillado de Bass, uso de hilo dental y enjuagues con clorhexidina al 0.12%'),(8,8,'Diagnóstico','Química Sanguinea',NULL,'nuevo plan de diagnostico v2'),(10,8,'Terapéutico',NULL,1,'profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis profilaxis'),(11,8,'Diagnóstico','Rayos X',NULL,'bbbbbbbbbbbbbb'),(12,8,'Terapéutico',NULL,11,'Aplicar crema en las encías Aplicar crema en las encías Aplicar crema en las encías'),(13,8,'Terapéutico',NULL,5,'Endodoncia Endodoncia Endodoncia Endodoncia Endodoncia Endodoncia'),(17,47,'Diagnóstico','Biometria',NULL,'AAAAAAAAAA');
 /*!40000 ALTER TABLE `plandiagnostico_tbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -679,4 +705,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-17 17:08:38
+-- Dump completed on 2023-06-19  2:26:40

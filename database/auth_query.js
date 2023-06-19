@@ -1,2 +1,5 @@
 export const verifyLogin =
-  "SELECT convert(aes_decrypt(`pass_admin`,?) using utf8mb4) as 'password' FROM `administrador_tbl`;";
+  "SELECT `pass_admin` FROM `administrador_tbl` WHERE aes_decrypt(`pass_admin`,?)= ?;";
+
+export const changePassword =
+  "UPDATE `administrador_tbl` SET `pass_admin` = aes_encrypt(?, ?) WHERE `id_administrador`= 1;";

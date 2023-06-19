@@ -1,3 +1,7 @@
+//dotenv
+import * as dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 //controlador de errores
 import { handleHttpError } from "../utils/handleError.js";
 
@@ -5,56 +9,70 @@ import { handleHttpError } from "../utils/handleError.js";
 import { poolDB } from "../database/db.js";
 
 //querys
-import { consultasCitas } from "../database/citas_querys.js";
+import { changePassword, verifyLogin } from "../database/auth_query.js";
 
-//obtener una sola cita
-export const getCitaa = async (req, res) => {
+//verificar contraseña para el inicio de sesion
+export const getLogin = async (req, res) => {
   try {
     //ejecutar consulta
-    const [result] = await poolDB.query(consultasCitas.getCita, [
-      req.params.fecha_citaAgen,
-      req.params.horaIni_citaAgen,
+    const [result] = await poolDB.query(verifyLogin, [
+      process.env.KEY_ADMIN,
+      req.body.passwordUser,
     ]);
-    //verificar cita consultada
+
+    //verificar si la contraseña es correcta
     if (result.length === 0) {
-      handleHttpError(res, new Error("Cita no encontrada"), "getCita", 404);
+      handleHttpError(res, new Error("Contraseña incorrecta"), "getLogin", 404);
     } else {
-      //mostrar cita
-      res.json(result[0]);
-      console.log("Cita traida de la BD");
+      //mostrar mensaje de login correcto
+      res.json({
+        message: "Login correcto",
+      });
     }
   } catch (error) {
-    handleHttpError(res, error, "getCita");
+    handleHttpError(res, error, "getLogin");
   }
 };
 
-//actualizar cita
-export const updateCitaa = async (req, res) => {
+//actualizar contraseña
+export const updatePassword = async (req, res) => {
   try {
-    //ejecutar update
-    const [result] = await poolDB.query(consultasCitas.updateCita, [
-      req.body,
-      req.params.fecha_citaAgen,
-      req.params.horaIni_citaAgen,
-    ]);
-    //verificar cambios
-    if (result.affectedRows === 0) {
-      handleHttpError(res, new Error("Cita no actualizada"), "updateCita", 404);
-    } else {
-      console.log("Cita atualizada en la BD");
+    const oldPass = req.body.passwordUser;
+    const newPass = req.body.newPassword;
 
-      //consultar la cita recientemente actualizada
-      const { fecha_citaAgen, horaIni_citaAgen } = req.body;
-      const [citaReciente] = await poolDB.query(consultasCitas.getCita, [
-        fecha_citaAgen,
-        horaIni_citaAgen,
+    const [result] = await poolDB.query(verifyLogin, [
+      process.env.KEY_ADMIN,
+      oldPass,
+    ]);
+
+    //verificar contraseña anterior
+    if (result.length === 0) {
+      handleHttpError(
+        res,
+        new Error("Contraseña actual incorrecta"),
+        "updatePassword",
+        404
+      );
+    } else {
+      const [result] = await poolDB.query(changePassword, [
+        newPass,
+        process.env.KEY_ADMIN,
       ]);
-      //mostrar Cita al cliente
-      res.json(citaReciente[0]);
-      //procedimiento almacenado
-      const proced = await poolDB.query(consultasCitas.proc_actualizar_citas);
+      //verificar cambios
+      if (result.affectedRows === 0) {
+        handleHttpError(
+          res,
+          new Error("Contraseña no actualizada"),
+          "updatePassword",
+          404
+        );
+      } else {
+        res.json({
+          message: "Contraseña actualizada",
+        });
+      }
     }
   } catch (error) {
-    handleHttpError(res, error, "updateCita");
+    handleHttpError(res, error, "updatePassword");
   }
 };
