@@ -32,7 +32,7 @@ app.use(authRoutes);
 
 //verificar conexion con la BD antes de abrir el puerto del servidor
 try {
-  await poolDB.query("SELECT * FROM `paciente_tbl` LIMIT 1");
+  await poolDB.query("SHOW TABLES");
   console.log("conexion exitosa con BD");
   app.listen(PORT);
   console.log(`Server is listening on port ${PORT}`);
