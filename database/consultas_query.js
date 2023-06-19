@@ -35,7 +35,7 @@ export const consultasConsultas = {
     "AND con.`fecha_consulta` between ? AND ? ORDER BY con.`fecha_consulta` ASC;",
 
   getDiagnosticos:
-    "SELECT concat(cie.`codigoCIE`,' - ',cie.`nombre_enfermedad`) as 'Diagnosticos' FROM `diagnostico_tbl` as diag INNER JOIN `enfermedades_cie.10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_consulta` = ?;",
+    "SELECT concat(cie.`codigoCIE`,' - ',cie.`nombre_enfermedad`) as 'Diagnosticos' FROM `diagnostico_tbl` as diag INNER JOIN `enfermedades_cie10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_consulta` = ?;",
   getTratamientos:
     "SELECT `id_tratam`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`fecha_tratam`)),'%Y-%m-%d') as 'Tratamiento' FROM  `tratamiento_tbl`  WHERE  `id_consulta` = ?;",
 

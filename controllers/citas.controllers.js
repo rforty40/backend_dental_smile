@@ -97,7 +97,6 @@ export const createCita = async (req, res) => {
       id_paciente,
       moti_citaAgen,
       esta_citaAgen,
-      id_consulta_tratam,
     } = req.body;
     //realizar registro
     const [result] = await poolDB.query(consultasCitas.createCita, [
@@ -107,7 +106,6 @@ export const createCita = async (req, res) => {
       id_paciente,
       moti_citaAgen,
       esta_citaAgen,
-      id_consulta_tratam,
     ]);
     //verificar registro
     if (result.affectedRows === 0) {

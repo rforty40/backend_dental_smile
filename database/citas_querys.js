@@ -46,9 +46,6 @@ export const consultasCitas = {
   getCita:
     queryCita + "cit.`fecha_citaAgen` = ? AND cit.`horaIni_citaAgen` = ?;",
 
-  // createCita:
-  //   "INSERT INTO  citaAgendada_tbl (fecha_citaAgen , horaIni_citaAgen ,  horaFin_citaAgen , id_paciente ,moti_citaAgen , esta_citaAgen,`id_consulta_tratam`)   VALUES (?,?,?,?,?,?,?)",
-
   createCita:
     "INSERT INTO  citaAgendada_tbl (fecha_citaAgen , horaIni_citaAgen ,  horaFin_citaAgen , id_paciente ,moti_citaAgen , esta_citaAgen)   VALUES (?,?,?,?,?,?)",
 
