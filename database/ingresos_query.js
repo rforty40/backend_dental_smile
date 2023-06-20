@@ -46,12 +46,12 @@ export const queryIngreso =
 
 export const consultas_ingresos = {
   getTP_consul:
-    "SELECT `desc_tipPago` as 'pago_por', `prec_tipPago` as 'monto' FROM `tipopago_tbl` WHERE `id_tipoConsul` in (SELECT `id_tipoConsul` FROM `consulta_tbl` WHERE `id_consulta` = ?);",
+    "SELECT `desc_tipPago` as 'pago_por', `prec_tipPago` as 'monto' FROM `tipoPago_tbl` WHERE `id_tipoConsul` in (SELECT `id_tipoConsul` FROM `consulta_tbl` WHERE `id_consulta` = ?);",
   getTP_proced:
     "SELECT tra_pro.`id_tratam_proced`, proced.`id_proced` FROM `tratamiento_procedimiento_tbl` as tra_pro INNER JOIN `procedimiento_tbl` as proced ON tra_pro.`id_proced` = proced.`id_proced` WHERE tra_pro.`id_tratam` in (SELECT tratam.`id_tratam` FROM  `tratamiento_tbl` as tratam WHERE tratam.`id_consulta` = ?) ORDER BY tra_pro.`id_tratam_proced`;",
 
   getTpago:
-    "SELECT `desc_tipPago` as 'pago_por', `prec_tipPago` as 'monto' FROM `tipopago_tbl` WHERE `id_proced` = ?;",
+    "SELECT `desc_tipPago` as 'pago_por', `prec_tipPago` as 'monto' FROM `tipoPago_tbl` WHERE `id_proced` = ?;",
 
   getIngresosConsul: queryIngreso + "WHERE `id_consulta` = ?;",
 
@@ -71,18 +71,3 @@ export const consultas_ingresos = {
   getSumaIngresos:
     "SELECT SUM(`monto_ingreso`) FROM `ingreso_tbl` WHERE `id_consulta` = ?;",
 };
-
-/*
-  getTP_proced:
-    "SELECT `desc_tipPago` as 'pago_por', `prec_tipPago` as 'monto' FROM `tipopago_tbl` WHERE `id_proced` in (SELECT proced.`id_proced` FROM `tratamiento_procedimiento_tbl` as tra_pro INNER JOIN `procedimiento_tbl` as proced ON tra_pro.`id_proced` = proced.`id_proced` WHERE tra_pro.`id_tratam` in (SELECT tratam.`id_tratam` FROM  `tratamiento_tbl` as tratam WHERE tratam.`id_consulta` = ?));",
-*/
-
-/*
-  const arrIngresoFecha = [
-    " ORDER BY `updfecha_ingreso` DESC;",
-    " AND  (extract(year from `fecha_ingreso`) = ? OR extract(year from `updfecha_ingreso`) = ? );",
-    " AND  (extract(year_month from `fecha_ingreso`) = ? OR extract(year_month from `updfecha_ingreso`) = ? );",
-    " AND (`fecha_ingreso` like concat(?,'%') OR `updfecha_ingreso` like concat(?,'%') );",
-    " AND (`fecha_ingreso` between ? AND ? OR `updfecha_ingreso` between ? AND ? );",
-  ];
-*/
