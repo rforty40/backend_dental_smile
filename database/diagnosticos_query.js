@@ -2,8 +2,6 @@ export const consultas_diagnos = {
   getDiagnosConsulta:
     "SELECT diag.`id_diag` , cie.`nombre_enfermedad`,cie.`codigoCIE`, diag.`tipo_diag`, diag.`desc_diag` FROM `diagnostico_tbl` as diag LEFT JOIN `enfermedades_cie10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_consulta` = ?",
 
-  // getDiagnosID: "SELECT * FROM `diagnostico_tbl` WHERE `id_diag`= ?;",
-
   getDiagnosID:
     "SELECT diag.`id_diag` , cie.`nombre_enfermedad`,cie.`codigoCIE`, diag.`tipo_diag`, diag.`desc_diag` FROM `diagnostico_tbl` as diag LEFT JOIN `enfermedades_cie10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_diag` = ?",
 

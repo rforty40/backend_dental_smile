@@ -57,8 +57,6 @@ export const consultas_ingresos = {
 
   getAllIngresos: queryIngreso + "ORDER BY `updfecha_ingreso` DESC;",
 
-  // getIngresoID: "SELECT * FROM `ingreso_tbl` WHERE `id_ingreso` = ?;",
-
   getIngresoID: queryIngreso + " WHERE `id_ingreso` = ?;",
 
   createIngreso:

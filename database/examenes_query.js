@@ -8,8 +8,6 @@ export const consultas_examenes = {
   getExamenesConsulta:
     "SELECT exa.`id_examEst`, exa.`regionAfec_examEst`,cie.`codigoCIE`, cie.`nombre_enfermedad`, exa.`desc_examEst` FROM  `examenEstomatonagtico_tlb` as exa INNER JOIN `enfermedades_cie10` as cie ON exa.`codigoCIE` = cie.`codigoCIE` WHERE exa.`id_consulta` = ?",
 
-  // getExamenID:
-  //   "SELECT * FROM `examenEstomatonagtico_tlb` WHERE `id_examEst`= ?;",
   getExamenID:
     "SELECT exa.`id_examEst`, exa.`regionAfec_examEst`,cie.`codigoCIE`, cie.`nombre_enfermedad`, exa.`desc_examEst` FROM  `examenEstomatonagtico_tlb` as exa INNER JOIN `enfermedades_cie10` as cie ON exa.`codigoCIE` = cie.`codigoCIE` WHERE exa.`id_examEst` = ?",
 
