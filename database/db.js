@@ -16,5 +16,5 @@ export const poolDB = createPool({
   user: MYSQL_USER,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
-  timezone: "+00:00",
+  timezone: "+0530",
 });
