@@ -10,21 +10,7 @@ import { consultasPacientes } from "../database/pacientes_query.js";
 //mostrarPacientes
 export const getAllPacientes = async (req, res) => {
   try {
-    //let result;
-    let queryPacientes;
-    //ejecutar query
-    if (req.params.busqueda === "_") {
-      queryPacientes = consultasPacientes.getAllPacientes;
-    } else {
-      queryPacientes = consultasPacientes.getAllPacientesNC;
-    }
-    //ejecutar query
-    const [result] = await poolDB.query(queryPacientes, [
-      req.params.busqueda,
-      req.params.busqueda,
-      req.params.busqueda,
-      req.params.busqueda,
-    ]);
+    const [result] = await poolDB.query(consultasPacientes.getAllPacientes);
     //verificar si se trajeron los datos
     if (result.length === 0) {
       handleHttpError(
@@ -34,6 +20,7 @@ export const getAllPacientes = async (req, res) => {
         404
       );
     } else {
+      console.log("getAllPaciente --->  ", result);
       res.json(result); //devolver los datos
       console.log("Pacientes traidos desde la BD");
     }

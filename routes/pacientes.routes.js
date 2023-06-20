@@ -20,7 +20,7 @@ import {
 const router = Router();
 
 //pacientes
-router.get("/pacientes/:busqueda", getAllPacientes);
+router.get("/getPacientes", getAllPacientes);
 router.get("/paciente/:id_paciente", getPacienteID);
 router.get("/buscarPaciente/:nombreCedula", getNombreCedula);
 router.post("/createPaciente", createPaciente);
