@@ -34,9 +34,7 @@ export const getCitas = async (req, res) => {
       case "mes":
         queryCitas = consultasCitas.getCitaMes;
         break;
-      // case "3meses":
-      //   queryCitas = consultasCitas.getCitas3Meses;
-      //   break;
+
       default: //entre fechas
         queryCitas = consultasCitas.getCitasEntreFechas;
         break;

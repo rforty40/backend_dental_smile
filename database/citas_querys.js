@@ -33,11 +33,6 @@ export const consultasCitas = {
     "extract(year_month from cit.`fecha_citaAgen`) = extract(year_month from current_date())" +
     orderbyFecha,
 
-  // getCitas3Meses:
-  //   queryCita +
-  //   "cit.`fecha_citaAgen` between current_date() and  adddate(current_date(),interval 3 month)" +
-  //   orderbyFecha,
-
   getCitasEntreFechas:
     queryCita + "cit.`fecha_citaAgen` between ? and ? " + orderbyFecha,
 
