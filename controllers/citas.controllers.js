@@ -11,7 +11,7 @@ import { consultasCitas } from "../database/citas_querys.js";
 export const getCitas = async (req, res) => {
   try {
     //procedimiento almacenado
-    const proced = await poolDB.query(consultasCitas.proc_actualizar_citas);
+    await poolDB.query(consultasCitas.proc_actualizar_citas);
 
     //seleccionar filtro del where
     let queryCitas;
@@ -34,9 +34,9 @@ export const getCitas = async (req, res) => {
       case "mes":
         queryCitas = consultasCitas.getCitaMes;
         break;
-      case "3meses":
-        queryCitas = consultasCitas.getCitas3Meses;
-        break;
+      // case "3meses":
+      //   queryCitas = consultasCitas.getCitas3Meses;
+      //   break;
       default: //entre fechas
         queryCitas = consultasCitas.getCitasEntreFechas;
         break;
@@ -112,7 +112,7 @@ export const createCita = async (req, res) => {
     if (result.affectedRows === 0) {
       handleHttpError(res, new Error("Cita no registrada"), "createCita", 404);
     } else {
-      console.log("Cita registrada en la BD");
+      console.log("Cita registrada ");
 
       //consultar la cita recientemente registrada
       const [citaReciente] = await poolDB.query(consultasCitas.getCita, [
@@ -142,7 +142,7 @@ export const updateCita = async (req, res) => {
     if (result.affectedRows === 0) {
       handleHttpError(res, new Error("Cita no actualizada"), "updateCita", 404);
     } else {
-      console.log("Cita atualizada en la BD");
+      console.log("Cita atualizada ");
 
       //consultar la cita recientemente actualizada
       const { fecha_citaAgen, horaIni_citaAgen } = req.body;

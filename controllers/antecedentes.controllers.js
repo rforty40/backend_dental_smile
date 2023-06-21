@@ -11,11 +11,14 @@ import { consultasAntecedentes } from "../database/antecedentes_query.js";
 export const getAntecedentes = async (req, res) => {
   try {
     //
+    let msgSuccess = "";
     let queryAntecedentes;
     if (req.params.tipo === "personales") {
       queryAntecedentes = consultasAntecedentes.getAntecedentesP;
+      msgSuccess = "Antecedentes personales traidos de la BD";
     } else {
       queryAntecedentes = consultasAntecedentes.getAntecedentesF;
+      msgSuccess = "Antecedentes familiares traidos de la BD";
     }
 
     //ejecutar query
@@ -27,17 +30,17 @@ export const getAntecedentes = async (req, res) => {
     if (result.length === 0) {
       handleHttpError(
         res,
-        new Error("Antecedentes personales no encontrados"),
-        "getAntecedentesP",
+        new Error("Antecedentes no encontrados"),
+        "getAntecedentes",
         404
       );
     } else {
       //devolver datos
       res.json(result);
-      console.log("Antecedentes personales traidos de la BD");
+      console.log(msgSuccess);
     }
   } catch (error) {
-    handleHttpError(res, error, "getAntecedentesP");
+    handleHttpError(res, error, "getAntecedentes");
   }
 };
 
@@ -66,7 +69,7 @@ export const createAntecedente = async (req, res) => {
         404
       );
     } else {
-      console.log("Antecedente registrado en la BD");
+      console.log("Antecedente registrado ");
 
       //consultar el antecedente recientemente registrado
       const [AntecedenteReciente] = await poolDB.query(
@@ -96,7 +99,7 @@ export const updateAntecedente = async (req, res) => {
         404
       );
     } else {
-      console.log("Antecedente actualizado en la BD");
+      console.log("Antecedente actualizado ");
 
       //consultar el antecedente recientemente actualizado
       const [antecedenteReciente] = await poolDB.query(

@@ -20,7 +20,6 @@ export const getAllPacientes = async (req, res) => {
         404
       );
     } else {
-      console.log("getAllPaciente --->  ", result);
       res.json(result); //devolver los datos
       console.log("Pacientes traidos desde la BD");
     }
