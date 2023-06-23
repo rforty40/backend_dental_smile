@@ -32,7 +32,9 @@ app.use(authRoutes);
 
 //verificar conexion con la BD antes de abrir el puerto del servidor
 try {
-  await poolDB.query("SHOW TABLES;");
+  await poolDB.query("SET @@global.time_zone = '-05:00';");
+  const { data } = await poolDB.query("SELECT current_timestamp();");
+  console.log(data);
   console.log("conexion exitosa con BD");
   app.listen(PORT);
   console.log(`Server is listening on port ${PORT}`);
