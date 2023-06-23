@@ -35,8 +35,7 @@ try {
   await poolDB.query("SET @@global.time_zone = '-05:00';");
   const [result] = await poolDB.query("SELECT current_timestamp();");
   console.log(result);
-  console.log("aaaa\n");
-  console.log(result[0]);
+  console.log("hora actual --> " + new Date(result[0]));
   app.listen(PORT);
   console.log("conexion exitosa con BD");
   console.log(`Server is listening on port ${PORT}`);
