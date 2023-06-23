@@ -33,10 +33,12 @@ app.use(authRoutes);
 //verificar conexion con la BD antes de abrir el puerto del servidor
 try {
   await poolDB.query("SET @@global.time_zone = '-05:00';");
-  const result = await poolDB.query("SELECT current_timestamp();");
+  const [result] = await poolDB.query("SELECT current_timestamp();");
   console.log(result);
-  console.log("conexion exitosa con BD");
+  console.log("aaaa\n");
+  console.log(result[0]);
   app.listen(PORT);
+  console.log("conexion exitosa con BD");
   console.log(`Server is listening on port ${PORT}`);
   console.log(`URL Dental Smile App = ${URL_PUBLIC}`);
 } catch (error) {
