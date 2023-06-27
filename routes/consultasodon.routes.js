@@ -61,6 +61,13 @@ import {
   getSumPagosConsulta,
 } from "../controllers/ingresos.controllers.js";
 
+//odontogramas
+import {
+  createOdont,
+  createPzaDental,
+  getAllOdontogramas,
+} from "../controllers/odontograma.controllers.js";
+
 //router
 const router = Router();
 
@@ -134,45 +141,16 @@ router.get("/consulta/:id_consulta/sum_pagos", getSumPagosConsulta);
 router.post("/consulta/:id_consulta/pagos/create", createIngreso);
 router.put("/pagos/update/:id_ingreso", updateIngreso);
 router.delete("/pagos/delete/:id_ingreso", deleteIngreso);
+
+//odontograma
+router.get("/consulta/:id_consulta/odontogramas", getAllOdontogramas);
+// router.get("/consulta/:id_consulta/sum_pagos", getSumPagosConsulta);
+router.post("/consulta/:id_consulta/odontograma/create", createOdont);
+// router.put("/pagos/update/:id_ingreso", updateIngreso);
+// router.delete("/pagos/delete/:id_ingreso", deleteIngreso);
+router.post(
+  "/odontograma/:id_odontograma/pieza_dental/create",
+  createPzaDental
+);
 //
 export default router;
-
-/*
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/prescripciones",
-  getPrescTratam
-);
-
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/procedimientos",
-  getProcedTratam
-);
-
-router.get(
-  "/pacientes/:id_paciente/consultas/:id_consulta/tratamientos/:id_tratam/complicaciones",
-  getCompliTratam
-);
-
-//Complicaciones de Tratamientos
-import {
-  getCompliTratam,
-  createCompli,
-  updateCompli,
-  deleteCompli,
-} from "../controllers/complicaciones.controllers.js";
-
-//Procedimientos de Tratamientos
-import {
-  getProcedTratam,
-  createProced,
-  deleteProced,
-} from "../controllers/proced_tratam.controllers.js";
-
-//Prescripciones de Tratamientos
-import {
-  getPrescTratam,
-  createPresc,
-  updatePresc,
-  deletePresc,
-} from "../controllers/prescripciones.controllers.js";
-*/
