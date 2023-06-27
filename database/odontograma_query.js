@@ -1,6 +1,6 @@
 export const consultas_odontogramas = {
   getOdontogramas:
-    "SELECT `id_odontograma`, `id_consulta`, DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(`fecha_odontograma`)),'%Y/%m/%d %H:%i:%s') as 'fecha_odontograma' FROM `odontograma_tbl` WHERE `id_consulta`= ? ORDER `fecha_odontograma` BY DESC;",
+    "SELECT `id_odontograma`, `id_consulta`, DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(`fecha_odontograma`)),'%Y/%m/%d %H:%i:%s') as 'fecha_odontograma' FROM `odontograma_tbl` WHERE `id_consulta`= ? ORDER BY `fecha_odontograma` DESC;",
 
   getOdontogramaId:
     "SELECT `id_odontograma`, `id_consulta`, DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(`fecha_odontograma`)),'%Y/%m/%d %H:%i:%s') as 'fecha_odontograma' FROM `odontograma_tbl` WHERE `id_odontograma`= ? ;",
