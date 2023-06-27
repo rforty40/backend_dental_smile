@@ -65,7 +65,10 @@ import {
 import {
   createOdont,
   createPzaDental,
+  deleteOdont,
+  deletePzaDental,
   getAllOdontogramas,
+  updatePzaDental,
 } from "../controllers/odontograma.controllers.js";
 
 //router
@@ -144,13 +147,15 @@ router.delete("/pagos/delete/:id_ingreso", deleteIngreso);
 
 //odontograma
 router.get("/consulta/:id_consulta/odontogramas", getAllOdontogramas);
-// router.get("/consulta/:id_consulta/sum_pagos", getSumPagosConsulta);
 router.post("/consulta/:id_consulta/odontograma/create", createOdont);
-// router.put("/pagos/update/:id_ingreso", updateIngreso);
-// router.delete("/pagos/delete/:id_ingreso", deleteIngreso);
+router.delete("/odontograma/delete/:id_odonto", deleteOdont);
+
+//piezas dentales
 router.post(
   "/odontograma/:id_odontograma/pieza_dental/create",
   createPzaDental
 );
+router.put("/odontograma/pieza_dental/update/:id_odonto", updatePzaDental);
+router.delete("/odontograma/pieza_dental/delete/:id_odonto", deletePzaDental);
 //
 export default router;

@@ -81,8 +81,33 @@ export const createOdont = async (req, res) => {
   }
 };
 
-//registrar pieza dental
+//eliminar Odontograma
+export const deleteOdont = async (req, res) => {
+  try {
+    //ejecutar delete
+    const [result] = await poolDB.query(
+      consultas_odontogramas.deleteOdontograma,
+      [req.params.id_odonto]
+    );
 
+    //verificar eliminación
+    if (result.affectedRows === 0) {
+      handleHttpError(
+        res,
+        new Error("Odontograma no eliminado"),
+        "deleteOdont",
+        404
+      );
+    } else {
+      console.log("Odontograma eliminado");
+      return res.sendStatus(204); //204 No Content
+    }
+  } catch (error) {
+    handleHttpError(res, error, "deleteOdont");
+  }
+};
+
+//registrar pieza dental
 export const createPzaDental = async (req, res) => {
   try {
     //extraer datos del body
@@ -131,5 +156,62 @@ export const createPzaDental = async (req, res) => {
     }
   } catch (error) {
     handleHttpError(res, error, "createPzaDental");
+  }
+};
+
+//actualizar pieza dental
+export const updatePzaDental = async (req, res) => {
+  try {
+    //ejecutar update
+    const [result] = await poolDB.query(consultas_dentales.updatePiezaDental, [
+      req.body,
+      req.params.id_odonto,
+    ]);
+    //verificar cambios
+    if (result.affectedRows === 0) {
+      handleHttpError(
+        res,
+        new Error("PiezaDental no actualizada"),
+        "updatePzaDental",
+        404
+      );
+    } else {
+      console.log("PiezaDental actualizada en la BD");
+
+      //PiezaDental recientemente actualizada
+      const [PzaDentalReciente] = await poolDB.query(
+        consultas_dentales.getPiezasDentalId,
+        [req.params.id_odonto]
+      );
+      //enviar datos al cliente
+      res.json(PzaDentalReciente[0]);
+    }
+  } catch (error) {
+    handleHttpError(res, error, "updatePzaDental");
+  }
+};
+
+//eliminar pieza dental
+export const deletePzaDental = async (req, res) => {
+  try {
+    //ejecutar delete
+    const [result] = await poolDB.query(consultas_dentales.deletePiezaDental, [
+      req.params.id_odonto,
+    ]);
+
+    //verificar eliminación
+    if (result.affectedRows === 0) {
+      handleHttpError(
+        res,
+        new Error("pieza dental no eliminada"),
+        "deletePzaDental",
+        404
+      );
+    } else {
+      console.log("pieza dental eliminada");
+      return res.sendStatus(204); //204 No Content
+    }
+  } catch (error) {
+    handleHttpError(res, error, "deletePzaDental");
   }
 };
