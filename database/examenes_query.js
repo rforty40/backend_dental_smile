@@ -9,7 +9,7 @@ export const consultas_examenes = {
     "SELECT exa.`id_examEst`, exa.`regionAfec_examEst`,cie.`codigoCIE`, cie.`nombre_enfermedad`, exa.`desc_examEst` FROM  `examenEstomatonagtico_tlb` as exa LEFT JOIN `enfermedades_cie10` as cie ON exa.`codigoCIE` = cie.`codigoCIE` WHERE exa.`id_consulta` = ?",
 
   getExamenID:
-    "SELECT exa.`id_examEst`, exa.`regionAfec_examEst`,cie.`codigoCIE`, cie.`nombre_enfermedad`, exa.`desc_examEst` FROM  `examenEstomatonagtico_tlb` as exa INNER JOIN `enfermedades_cie10` as cie ON exa.`codigoCIE` = cie.`codigoCIE` WHERE exa.`id_examEst` = ?",
+    "SELECT exa.`id_examEst`, exa.`regionAfec_examEst`,cie.`codigoCIE`, cie.`nombre_enfermedad`, exa.`desc_examEst` FROM  `examenEstomatonagtico_tlb` as exa LEFT JOIN `enfermedades_cie10` as cie ON exa.`codigoCIE` = cie.`codigoCIE` WHERE exa.`id_examEst` = ?",
 
   createExamen:
     "INSERT INTO `examenEstomatonagtico_tlb` (`id_consulta`,`regionAfec_examEst`,`codigoCIE`,`desc_examEst`) VALUES (?,?,?,?);",
