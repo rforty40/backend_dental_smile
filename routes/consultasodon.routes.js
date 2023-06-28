@@ -146,7 +146,7 @@ router.put("/pagos/update/:id_ingreso", updateIngreso);
 router.delete("/pagos/delete/:id_ingreso", deleteIngreso);
 
 //odontograma
-router.get("/consulta/:id_consulta/odontogramas", getAllOdontogramas);
+router.get("/odontogramas/:tipo/:id_tipo", getAllOdontogramas);
 router.post("/consulta/:id_consulta/odontograma/create", createOdont);
 router.delete("/odontograma/delete/:id_odonto", deleteOdont);
 
@@ -155,7 +155,7 @@ router.post(
   "/odontograma/:id_odontograma/pieza_dental/create",
   createPzaDental
 );
-router.put("/odontograma/pieza_dental/update/:id_odonto", updatePzaDental);
-router.delete("/odontograma/pieza_dental/delete/:id_odonto", deletePzaDental);
+router.put("/odontograma/pieza_dental/update/:id_pDental", updatePzaDental);
+router.delete("/odontograma/pieza_dental/delete/:id_pDental", deletePzaDental);
 //
 export default router;

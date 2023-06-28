@@ -10,15 +10,24 @@ import {
   consultas_dentales,
 } from "../database/odontograma_query.js";
 
+//
 //obtener Odontoogramas
 export const getAllOdontogramas = async (req, res) => {
   try {
-    let resultPiezas;
+    let resultOdonto, resultPiezas;
+
     //ejecutar consulta
-    const [resultOdonto] = await poolDB.query(
-      consultas_odontogramas.getOdontogramas,
-      [req.params.id_consulta]
-    );
+    if (req.params.tipo === "consulta") {
+      [resultOdonto] = await poolDB.query(
+        consultas_odontogramas.getOdontogramas,
+        [req.params.id_tipo]
+      );
+    } else {
+      [resultOdonto] = await poolDB.query(
+        consultas_odontogramas.getOdontogramasPac,
+        [req.params.id_tipo]
+      );
+    }
 
     //verificar consulta exitosa
     if (resultOdonto.length === 0) {
@@ -165,7 +174,7 @@ export const updatePzaDental = async (req, res) => {
     //ejecutar update
     const [result] = await poolDB.query(consultas_dentales.updatePiezaDental, [
       req.body,
-      req.params.id_odonto,
+      req.params.id_pDental,
     ]);
     //verificar cambios
     if (result.affectedRows === 0) {
@@ -181,7 +190,7 @@ export const updatePzaDental = async (req, res) => {
       //PiezaDental recientemente actualizada
       const [PzaDentalReciente] = await poolDB.query(
         consultas_dentales.getPiezasDentalId,
-        [req.params.id_odonto]
+        [req.params.id_pDental]
       );
       //enviar datos al cliente
       res.json(PzaDentalReciente[0]);
@@ -196,7 +205,7 @@ export const deletePzaDental = async (req, res) => {
   try {
     //ejecutar delete
     const [result] = await poolDB.query(consultas_dentales.deletePiezaDental, [
-      req.params.id_odonto,
+      req.params.id_pDental,
     ]);
 
     //verificar eliminación
