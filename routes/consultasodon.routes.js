@@ -71,6 +71,15 @@ import {
   updatePzaDental,
 } from "../controllers/odontograma.controllers.js";
 
+//salud bucal
+import {
+  createPzaSaludBucal,
+  createSaludBucal,
+  getAllSaludBucal,
+  updatePzaSaludBucal,
+  updateSaludBucal,
+} from "../controllers/salud_bucal.controllers.js";
+
 //router
 const router = Router();
 
@@ -158,4 +167,19 @@ router.post(
 router.put("/odontograma/pieza_dental/update/:id_pDental", updatePzaDental);
 router.delete("/odontograma/pieza_dental/delete/:id_pDental", deletePzaDental);
 //
+
+//salud Bucal
+router.get("/salud_bucal/consulta/:id_consulta", getAllSaludBucal);
+router.post("/consulta/:id_consulta/salud_bucal/create", createSaludBucal);
+router.put("/salud_bucal/update/:id_saludb", updateSaludBucal);
+
+//piezas dentales salud bucal
+router.post("/salud_bucal/:id_saludb/pieza_dental/create", createPzaSaludBucal);
+router.put(
+  "/salud_bucal/pieza_dental/update/:id_pDentalSb",
+  updatePzaSaludBucal
+);
+
+//
+
 export default router;

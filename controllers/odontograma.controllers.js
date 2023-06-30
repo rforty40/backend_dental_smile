@@ -40,7 +40,6 @@ export const getAllOdontogramas = async (req, res) => {
     } else {
       //agregar piezas dentales
       for (let odontograma of resultOdonto) {
-        //complicaciones
         [resultPiezas] = await poolDB.query(
           consultas_dentales.getPiezasDentales,
           [odontograma.id_odontograma]
