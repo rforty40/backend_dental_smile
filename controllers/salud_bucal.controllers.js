@@ -152,9 +152,18 @@ export const createPzaSaludBucal = async (req, res) => {
 //actualizar pieza dental
 export const updatePzaSaludBucal = async (req, res) => {
   try {
+    //extraer datos del body
+    const { fila_pza, pieza, placa, calculo, gingivitis } = req.body;
+
     //ejecutar update
     const [result] = await poolDB.query(consultas_pzaSaludB.updatePzaSaludB, [
-      req.body,
+      {
+        fila_pzaSaludb: fila_pza,
+        pieza_pzaSaludb: pieza,
+        placa_pzaSaludb: placa,
+        calculo_pzaSaludb: calculo,
+        gingivitis_pzaSaludb: gingivitis,
+      },
       req.params.id_pDentalSb,
     ]);
     //verificar cambios

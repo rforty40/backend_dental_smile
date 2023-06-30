@@ -21,5 +21,5 @@ export const consultas_pzaSaludB = {
   createPzaSaludB:
     "INSERT INTO `piezaSaludB_tbl` (`id_saludBucal`,`fila_pzaSaludb`,`pieza_pzaSaludb`,`placa_pzaSaludb`,`calculo_pzaSaludb`,`gingivitis_pzaSaludb`) VALUES (?,?,?,?,?,?);",
 
-  updatePzaSaludB: "UPDATE `piezaSaludB_tbl`  SET ? WHERE `id_pzaSaludB`=?;",
+  updatePzaSaludB: "UPDATE `piezaSaludB_tbl`  SET ? WHERE `id_pzaSaludB`= ? ;",
 };
