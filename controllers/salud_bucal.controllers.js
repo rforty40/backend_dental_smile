@@ -51,6 +51,9 @@ export const createSaludBucal = async (req, res) => {
     //realizar registro
     const [result] = await poolDB.query(consultas_saludB.createSaludBucal, [
       req.params.id_consulta,
+      "",
+      "",
+      "",
     ]);
 
     //verificar registro
