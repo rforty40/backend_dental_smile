@@ -195,27 +195,35 @@ export const deleteFotografia = async (req, res) => {
 
     // await deleteImage(req.params.id_foto);
 
-    await cloudinary.uploader.destroy(req.params.id_foto, function (resultado) {
-      console.log(resultado);
-    });
-
+    await cloudinary.uploader.destroy(
+      "rdzrjt6yctwz7vjxfsy0",
+      function (resultado) {
+        console.log(resultado);
+      }
+    );
+    await cloudinary.uploader.destroy(
+      "dental_smile_app/krngums3ga0pathxoftu",
+      function (resultado) {
+        console.log(resultado);
+      }
+    );
     console.log("pasa");
-    const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
-      req.params.id_foto,
-    ]);
+    // const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
+    //   req.params.id_foto,
+    // ]);
 
-    //verificar eliminación
-    if (result.affectedRows === 0) {
-      handleHttpError(
-        res,
-        new Error("foto no eliminada"),
-        "deleteFotografia",
-        404
-      );
-    } else {
-      console.log("foto eliminada");
-      return res.sendStatus(204); //204 No Content
-    }
+    // //verificar eliminación
+    // if (result.affectedRows === 0) {
+    //   handleHttpError(
+    //     res,
+    //     new Error("foto no eliminada"),
+    //     "deleteFotografia",
+    //     404
+    //   );
+    // } else {
+    //   console.log("foto eliminada");
+    //   return res.sendStatus(204); //204 No Content
+    // }
   } catch (error) {
     console.log(error);
     handleHttpError(res, error, "deleteFotografia");

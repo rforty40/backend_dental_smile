@@ -5,7 +5,7 @@ cloudinary.config({
   cloud_name: "dcf1pwzqj",
   api_key: "653134549667724",
   api_secret: "ytuqvuyh-uzatGFh2cIvjS1dMWo",
-  secure: true,
+  // secure: true,
 });
 
 export default cloudinary;
