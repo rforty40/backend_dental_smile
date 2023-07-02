@@ -191,6 +191,7 @@ export const deleteFotografia = async (req, res) => {
     //ejecutar delete
 
     console.log("idfoto -", req.params.id_foto);
+
     await deleteImage(req.params.id_foto);
 
     console.log("pasa");
