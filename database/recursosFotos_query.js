@@ -15,9 +15,9 @@ export const consultas_recursos = {
 
 export const consultas_fotos = {
   getFotos:
-    "SELECT  `id_fotografia`, `url_foto` FROM `fotografias_tbl` WHERE `id_recurso` = ?;",
+    "SELECT  `id_fotografia` as 'id', `url_foto` as 'url' FROM `fotografias_tbl` WHERE `id_recurso` = ?;",
   getFotoId:
-    "SELECT  `id_fotografia`, `url_foto`, `id_recurso`  FROM `fotografias_tbl` WHERE `id_fotografia` = ? ;",
+    "SELECT  `id_fotografia` as 'id', `url_foto` as 'url'  FROM `fotografias_tbl` WHERE `id_fotografia` = ? ;",
   createFoto:
     "INSERT INTO `fotografias_tbl`(`id_fotografia`,`id_recurso`,`url_foto`)  VALUES (?,?,?) ;",
 

@@ -111,6 +111,13 @@ export const updateRecursoFoto = async (req, res) => {
         consultas_recursos.getRecursoId,
         [req.params.id_recurso]
       );
+
+      //cargando fotos
+      const [resultFotografias] = await poolDB.query(consultas_fotos.getFotos, [
+        recurso.id_recurso,
+      ]);
+      recursoFotoReciente[0].fotos = resultFotografias;
+
       //enviar datos al cliente
       res.json(recursoFotoReciente[0]);
     }
