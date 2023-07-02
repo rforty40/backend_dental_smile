@@ -198,7 +198,7 @@ router.delete("/recurso/delete/:id_recurso", deleteRecursoFoto);
 
 //fotos
 router.post("/recurso/:id_recurso/fotografia/create", createFotografia);
-router.delete("/fotografia/delete/:id_foto", deleteFotografia);
+router.delete("/fotografia/deleteById", deleteFotografia);
 
 //
 export default router;

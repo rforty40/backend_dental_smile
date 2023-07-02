@@ -189,13 +189,14 @@ export const createFotografia = async (req, res) => {
 export const deleteFotografia = async (req, res) => {
   try {
     //ejecutar delete
+    const { image_publi_id } = req.body;
 
-    console.log("idfoto -", req.params.id_foto);
-    await deleteImage(req.params.id_foto);
+    console.log("idfoto -", image_publi_id);
+    await deleteImage(image_publi_id);
 
     console.log("pasa");
     const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
-      req.params.id_foto,
+      image_publi_id,
     ]);
 
     //verificar eliminación
