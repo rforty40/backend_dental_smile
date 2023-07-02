@@ -144,8 +144,13 @@ export const deleteRecursoFoto = async (req, res) => {
 //registrar foto
 export const createFotografia = async (req, res) => {
   try {
-    const { id, url } = req.body;
+    const { id, url, fotos } = req.body;
 
+    console.log("fotos from client ---> ", fotos);
+    for (const foto of fotos) {
+      console.log("typeof foto --->", typeof foto);
+      console.log("foto ---> ", foto);
+    }
     //realizar registro
     const [result] = await poolDB.query(consultas_fotos.createFoto, [
       id,
