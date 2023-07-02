@@ -185,6 +185,9 @@ export const createFotografia = async (req, res) => {
         result.insertId,
       ]);
 
+      console.log("result.insertId  --->  ", result.insertId);
+      console.log("fotoReciente[0]  --->  ", fotoReciente[0]);
+
       //enviar datos al cliente
       res.json(fotoReciente[0]);
     }
