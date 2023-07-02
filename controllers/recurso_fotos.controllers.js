@@ -191,7 +191,7 @@ export const deleteFotografia = async (req, res) => {
     //ejecutar delete
 
     console.log("idfoto -", req.params.id_foto);
-    await deleteImage("denta_smile_app/" + req.params.id_foto);
+    await deleteImage(req.params.id_foto);
 
     console.log("pasa");
     const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
