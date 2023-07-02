@@ -10,10 +10,10 @@ import {
   consultas_fotos,
 } from "../database/recursosFotos_query.js";
 
-import { deleteImage } from "../helpers/cloudinary/deleteImage.js";
-import cloudinary from "../helpers/cloudinary/cloudinaryConfig.js";
+//cloudinary API
+import cloudinary from "../utils/cloudinaryConfig.js";
+import { FOLDER_NAME_CLOUDINARY } from "../config.js";
 
-//
 //obtener recursos foto de la consulta
 export const getAllRecursosFoto = async (req, res) => {
   try {
@@ -189,43 +189,29 @@ export const createFotografia = async (req, res) => {
 //eliminar foto
 export const deleteFotografia = async (req, res) => {
   try {
-    //ejecutar delete
-
-    console.log("idfoto -", req.params.id_foto);
-
-    // await deleteImage(req.params.id_foto);
-
+    //ejecutar delete de imagen el cloudinary
     await cloudinary.uploader.destroy(
-      "rdzrjt6yctwz7vjxfsy0",
-      function (resultado) {
-        console.log(resultado);
-      }
+      `${FOLDER_NAME_CLOUDINARY}/${req.params.id_foto}`
     );
-    await cloudinary.uploader.destroy(
-      "dental_smile_app/krngums3ga0pathxoftu",
-      function (resultado) {
-        console.log(resultado);
-      }
-    );
-    console.log("pasa");
-    // const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
-    //   req.params.id_foto,
-    // ]);
 
-    // //verificar eliminación
-    // if (result.affectedRows === 0) {
-    //   handleHttpError(
-    //     res,
-    //     new Error("foto no eliminada"),
-    //     "deleteFotografia",
-    //     404
-    //   );
-    // } else {
-    //   console.log("foto eliminada");
-    //   return res.sendStatus(204); //204 No Content
-    // }
+    //ejecutar delete BD
+    const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
+      req.params.id_foto,
+    ]);
+
+    //verificar eliminación
+    if (result.affectedRows === 0) {
+      handleHttpError(
+        res,
+        new Error("foto no eliminada"),
+        "deleteFotografia",
+        404
+      );
+    } else {
+      console.log("foto eliminada");
+      return res.sendStatus(204); //204 No Content
+    }
   } catch (error) {
-    console.log(error);
     handleHttpError(res, error, "deleteFotografia");
   }
 };
