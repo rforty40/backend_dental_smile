@@ -80,6 +80,16 @@ import {
   updateSaludBucal,
 } from "../controllers/salud_bucal.controllers.js";
 
+//recurso fotograficos
+import {
+  createFotografia,
+  createRecursoFoto,
+  deleteFotografia,
+  deleteRecursoFoto,
+  getAllRecursosFoto,
+  updateRecursoFoto,
+} from "../controllers/recurso_fotos.controllers.js";
+
 //router
 const router = Router();
 
@@ -180,6 +190,15 @@ router.put(
   updatePzaSaludBucal
 );
 
-//
+//recursos fotograficos
+router.get("/consulta/:id_consulta/recursos", getAllRecursosFoto);
+router.post("/consulta/:id_consulta/recurso/create", createRecursoFoto);
+router.put("/recurso/update/:id_recurso", updateRecursoFoto);
+router.delete("/recurso/delete/:id_recurso", deleteRecursoFoto);
 
+//fotos
+router.post("/recurso/:id_recurso/fotografia/create", createFotografia);
+router.delete("/fotografia/delete/:id_foto", deleteFotografia);
+
+//
 export default router;

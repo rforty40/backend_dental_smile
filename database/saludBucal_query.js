@@ -6,9 +6,9 @@ export const consultas_saludB = {
     "SELECT `id_saludBucal` as 'id_saludb', `id_consulta`,  `enferper_saludb` as 'enfermedad_periodontal', `maloclus_saludb` as 'mal_oclusion', `fluorosis_saludb` as 'fluorosis' FROM `saludBucal_tbl`  WHERE `id_saludBucal` = ?;",
 
   createSaludBucal:
-    "INSERT INTO `saludBucal_tbl`(`id_consulta`,`enferper_saludb`,`maloclus_saludb`,`fluorosis_saludb`) VALUES (?,?,?,?)",
+    "INSERT INTO `saludBucal_tbl` (`id_consulta`,`enferper_saludb`,`maloclus_saludb`,`fluorosis_saludb`) VALUES (?,?,?,?) ;",
 
-  updateSaludBucal: "UPDATE `saludBucal_tbl` SET ? WHERE `id_saludBucal`= ?",
+  updateSaludBucal: "UPDATE `saludBucal_tbl` SET ? WHERE `id_saludBucal`= ? ;",
 };
 
 export const consultas_pzaSaludB = {
