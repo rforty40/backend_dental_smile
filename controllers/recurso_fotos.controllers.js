@@ -195,7 +195,9 @@ export const deleteFotografia = async (req, res) => {
 
     // await deleteImage(req.params.id_foto);
 
-    await cloudinary.uploader.destroy(req.params.id_foto);
+    await cloudinary.uploader.destroy(req.params.id_foto, function (resultado) {
+      console.log(resultado);
+    });
 
     console.log("pasa");
     const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
@@ -215,6 +217,7 @@ export const deleteFotografia = async (req, res) => {
       return res.sendStatus(204); //204 No Content
     }
   } catch (error) {
+    console.log(error);
     handleHttpError(res, error, "deleteFotografia");
   }
 };
