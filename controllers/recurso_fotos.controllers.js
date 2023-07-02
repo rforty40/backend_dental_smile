@@ -11,6 +11,7 @@ import {
 } from "../database/recursosFotos_query.js";
 
 import { deleteImage } from "../helpers/cloudinary/deleteImage.js";
+import cloudinary from "../helpers/cloudinary/cloudinaryConfig.js";
 
 //
 //obtener recursos foto de la consulta
@@ -192,7 +193,9 @@ export const deleteFotografia = async (req, res) => {
 
     console.log("idfoto -", req.params.id_foto);
 
-    await deleteImage(req.params.id_foto);
+    // await deleteImage(req.params.id_foto);
+
+    await cloudinary.uploader.destroy(req.params.id_foto);
 
     console.log("pasa");
     const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
