@@ -10,6 +10,7 @@ import {
   consultas_fotos,
 } from "../database/recursosFotos_query.js";
 import { uploadImage } from "../helpers/uploadImage.js";
+import { deleteImage } from "../helpers/cloudinary/deleteImage.js";
 
 //
 //obtener recursos foto de la consulta
@@ -188,6 +189,9 @@ export const createFotografia = async (req, res) => {
 export const deleteFotografia = async (req, res) => {
   try {
     //ejecutar delete
+
+    await deleteImage(req.params.id_foto);
+
     const [result] = await poolDB.query(consultas_fotos.deleteFoto, [
       req.params.id_foto,
     ]);
