@@ -10,7 +10,7 @@ export const consultas_recursos = {
   deleteRecurso: "DELETE FROM `recursoFoto_tbl` WHERE `id_recurso` = ?;",
 
   getRecursoId:
-    "SELECT `id_recurso`, `id_consulta`, `titulo_recurso`, `descripcion_recurso`, DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(`fecha_recurso`)),'%Y/%m/%d %H:%i:%s') as 'fecha_recurso' FROM `recursoFoto_tbl` WHERE `id_recurso` = ? ;",
+    "SELECT `id_recurso`, `id_consulta`, `titulo_recurso` as 'titulo' , `descripcion_recurso` as 'descripcion' , DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(`fecha_recurso`)),'%Y/%m/%d %H:%i:%s') as 'fecha_recurso' FROM `recursoFoto_tbl` WHERE `id_recurso` = ? ;",
 };
 
 export const consultas_fotos = {
