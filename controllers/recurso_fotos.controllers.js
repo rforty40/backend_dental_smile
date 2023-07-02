@@ -9,6 +9,7 @@ import {
   consultas_recursos,
   consultas_fotos,
 } from "../database/recursosFotos_query.js";
+import { uploadImage } from "../helpers/uploadImage.js";
 
 //
 //obtener recursos foto de la consulta
@@ -144,11 +145,13 @@ export const deleteRecursoFoto = async (req, res) => {
 //registrar foto
 export const createFotografia = async (req, res) => {
   try {
-    const { id, url, foto } = req.body;
+    // const { id, url, foto } = req.body;
+    const { foto } = req.body;
 
     console.log("typeof foto --->", typeof foto);
     console.log("foto ---> ", foto);
-    console.log(foto);
+
+    const { id, url } = await uploadImage(foto);
 
     //realizar registro
     const [result] = await poolDB.query(consultas_fotos.createFoto, [
