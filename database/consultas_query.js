@@ -42,6 +42,9 @@ export const consultasConsultas = {
   getProcedimientos:
     "SELECT concat(proced.`cod_proced`,' - ',proced.`nom_proced`) as 'Procedimiento' FROM  `tratamiento_procedimiento_tbl` as tra_pro INNER JOIN `procedimiento_tbl` as proced ON tra_pro.`id_proced` = proced.`id_proced` WHERE tra_pro.`id_tratam` = ?;",
 
+  getFotosConsulta:
+    "SELECT recurso.`titulo_recurso` as 'titulo', recurso.`descripcion_recurso` as 'descr', DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(recurso.`fecha_recurso`)),'%Y/%m/%d %H:%i:%s') as 'fecha', foto.`url_foto` as 'url' FROM `recursoFoto_tbl` as recurso  INNER JOIN `fotografias_tbl` as foto ON   recurso.`id_recurso`  =foto.`id_recurso` WHERE recurso.`id_consulta` = ? ;",
+
   getHeaderConsulta:
     "SELECT tipCon.`tipo_tipoConsul`, concat_ws(' ',pac.`priNom_paciente`,pac.`segNom_paciente`,pac.`priApe_paciente`,pac.`segApe_paciente`) as 'paciente', concat_ws(' ',datediff(current_date(),con.`fecha_consulta`),'Días') as 'dias', DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(con.`fecha_consulta`)),'%Y-%m-%d') as 'fecha_consulta', TIME_FORMAT(FROM_UNIXTIME(unix_timestamp(con.`hora_consulta`)),'%H:%i') as 'hora_consulta' FROM `consulta_tbl` as con INNER JOIN `paciente_tbl` as pac ON con.`id_paciente` = pac.`id_paciente` INNER JOIN `tipoConsulta_tbl` as tipCon ON con.`id_tipoConsul` = tipCon.`id_tipoConsul` WHERE `id_consulta` = ?;",
 

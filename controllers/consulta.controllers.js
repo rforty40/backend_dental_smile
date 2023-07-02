@@ -37,7 +37,7 @@ export const getConsultas = async (req, res) => {
       );
     } else {
       //modificar JSON
-      let resultD, resultT, resultP;
+      let resultD, resultT, resultP, resultFotos;
       for (let consulta of resultC) {
         //agregar Diagnosticos
         [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
@@ -58,6 +58,13 @@ export const getConsultas = async (req, res) => {
           ]);
           tratam.procedimientos = resultP;
         }
+
+        //agregar Fotos
+        [resultFotos] = await poolDB.query(
+          consultasConsultas.getFotosConsulta,
+          [consulta.id_consulta]
+        );
+        consulta.fotos = resultFotos;
       }
       //variables
       let resultadosFiltrados;
