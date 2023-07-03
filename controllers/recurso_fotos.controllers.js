@@ -155,12 +155,6 @@ export const deleteRecursoFoto = async (req, res) => {
 export const createFotografia = async (req, res) => {
   try {
     const { id, url } = req.body;
-    // const { foto } = req.body;
-
-    // console.log("typeof foto --->", typeof foto);
-    // console.log("foto ---> ", foto);
-
-    // const { id, url } = await uploadImage(foto);
 
     //realizar registro
     const [result] = await poolDB.query(consultas_fotos.createFoto, [

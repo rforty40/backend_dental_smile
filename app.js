@@ -34,7 +34,6 @@ app.use(authRoutes);
 try {
   await poolDB.query("SET @@global.time_zone = '-05:00';");
   const [result] = await poolDB.query("SELECT current_timestamp();");
-  console.log(result);
   console.log("hora actual --> " + new Date(Object.values(result[0])[0]));
   app.listen(PORT);
   console.log("conexion exitosa con BD");

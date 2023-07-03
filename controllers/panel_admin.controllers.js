@@ -90,8 +90,8 @@ export const getPanelAdmin = async (req, res) => {
           }
         }
       }
+
       //mostrar resultados
-      // result.unshift(result.length); //agregar cantidad de registros
       res.json(result);
     }
   } catch (error) {
@@ -159,11 +159,3 @@ export const getGanancias = async (req, res) => {
     handleHttpError(res, error, "getGanancias");
   }
 };
-
-//ejecutar query
-// let result;
-// if (posFiltro === 7) {
-//   [result] = await poolDB.query(queryFinal, [fech1, fech2, fech1, fech2]);
-// } else {
-//   [result] = await poolDB.query(queryFinal, [fech1, fech1]);
-// }

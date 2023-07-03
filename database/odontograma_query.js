@@ -25,5 +25,6 @@ export const consultas_dentales = {
     "INSERT INTO `piezaDental_tbl` (`id_odontograma`, `num_dent`, `mov_dent`, `rec_dent`, `oclusal_dent`, `vestibular_dent`, `mesial_dent`, `lingual_dent`, `distal_dent`)  VALUES(?,?,?,?,?,?,?,?,?) ;",
 
   updatePiezaDental: "UPDATE `piezaDental_tbl` SET ? WHERE `id_dent` = ?;",
+
   deletePiezaDental: "DELETE FROM `piezaDental_tbl` WHERE `id_dent` = ?;",
 };
