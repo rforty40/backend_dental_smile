@@ -37,8 +37,29 @@ export const getConsultas = async (req, res) => {
       );
     } else {
       //modificar JSON
-      let resultD, resultT, resultP, resultFotos;
+      let resultD,
+        resultT,
+        resultP,
+        resultPlanD,
+        resultPlanT,
+        resultPlanE,
+        resultFotos;
       for (let consulta of resultC) {
+        //agregar planes de diagnostico
+        [resultPlanD] = await poolDB.query(consultasConsultas.getPlanesDiag, [
+          consulta.id_consulta,
+        ]);
+
+        //agregar planes terapeuticos
+        [resultPlanT] = await poolDB.query(consultasConsultas.getPlanesTera, [
+          consulta.id_consulta,
+        ]);
+
+        //agregar planes educacionales
+        [resultPlanE] = await poolDB.query(consultasConsultas.getPlanesEdu, [
+          consulta.id_consulta,
+        ]);
+
         //agregar Diagnosticos
         [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
           consulta.id_consulta,

@@ -36,8 +36,19 @@ export const consultasConsultas = {
 
   getDiagnosticos:
     "SELECT concat(cie.`codigoCIE`,' - ',cie.`nombre_enfermedad`) as 'Diagnosticos' FROM `diagnostico_tbl` as diag INNER JOIN `enfermedades_cie10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_consulta` = ?;",
+
   getTratamientos:
     "SELECT `id_tratam`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`fecha_tratam`)),'%Y-%m-%d') as 'Tratamiento' FROM  `tratamiento_tbl`  WHERE  `id_consulta` = ?;",
+
+  getPlanesDiag:
+    "SELECT concat_ws(" -
+    ",`exam_planDiag`,`desc_planDiag`) as 'PlanesDiag' FROM `planDiagnostico_tbl` WHERE `tipo_planDiag`= 'Diagnóstico' AND `id_consulta` = ? ;",
+
+  getPlanesTera:
+    "SELECT `tipo_tipoTratam`, tipoT.`tratam_tipoTratam`,planD.`desc_planDiag` FROM `planDiagnostico_tbl` as planD LEFT JOIN `tipoTratamiento_tbl` as tipoT ON planD.`id_tipoTratam` = tipoT.`id_tipoTratam` WHERE planD.`tipo_planDiag`='Terapéutico' AND planD.`id_consulta` = ? ;",
+
+  getPlanesEdu:
+    "SELECT `desc_planDiag` FROM `planDiagnostico_tbl` WHERE `tipo_planDiag`= 'Educacional' AND  `id_consulta` = ? ;",
 
   getProcedimientos:
     "SELECT concat(proced.`cod_proced`,' - ',proced.`nom_proced`) as 'Procedimiento' FROM  `tratamiento_procedimiento_tbl` as tra_pro INNER JOIN `procedimiento_tbl` as proced ON tra_pro.`id_proced` = proced.`id_proced` WHERE tra_pro.`id_tratam` = ?;",
