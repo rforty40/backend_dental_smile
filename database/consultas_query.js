@@ -35,23 +35,22 @@ export const consultasConsultas = {
     "AND con.`fecha_consulta` between ? AND ? ORDER BY con.`fecha_consulta` ASC;",
 
   getDiagnosticos:
-    "SELECT concat(cie.`codigoCIE`,' - ',cie.`nombre_enfermedad`) as 'Diagnosticos' FROM `diagnostico_tbl` as diag INNER JOIN `enfermedades_cie10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_consulta` = ?;",
+    "SELECT concat_ws(' - ', cie.`codigoCIE`, cie.`nombre_enfermedad`, diag.`tipo_diag`, diag.`desc_diag`) as 'Diagnosticos' FROM `diagnostico_tbl` as diag LEFT JOIN `enfermedades_cie10` as cie ON diag.`codigoCIE` = cie.`codigoCIE` WHERE diag.`id_consulta` = ?;",
 
   getTratamientos:
-    "SELECT `id_tratam`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(`fecha_tratam`)),'%Y-%m-%d') as 'Tratamiento' FROM  `tratamiento_tbl`  WHERE  `id_consulta` = ?;",
+    "SELECT  tra.`id_tratam`,  tra.`id_tipoTratam`, tipo_tratam.`tipo_tipoTratam`, tipo_tratam.`tratam_tipoTratam` as 'tratamiento', tra.`codigoCIE`, cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie10` as cie ON tra.`codigoCIE` = cie.`codigoCIE` LEFT JOIN `tipotratamiento_tbl` as tipo_tratam ON tra.`id_tipoTratam` = tipo_tratam.`id_tipoTratam` WHERE tra.`id_consulta`= ? ;",
 
   getPlanesDiag:
-    "SELECT concat_ws(" -
-    ",`exam_planDiag`,`desc_planDiag`) as 'PlanesDiag' FROM `planDiagnostico_tbl` WHERE `tipo_planDiag`= 'Diagnóstico' AND `id_consulta` = ? ;",
+    "SELECT concat_ws(' - ', planD.`exam_planDiag`, planD.`desc_planDiag`) as 'PlanesDiag' FROM `planDiagnostico_tbl` as planD WHERE planD.`tipo_planDiag`= 'Diagnóstico' AND planD.`id_consulta` = ? ;",
 
   getPlanesTera:
-    "SELECT `tipo_tipoTratam`, tipoT.`tratam_tipoTratam`,planD.`desc_planDiag` FROM `planDiagnostico_tbl` as planD LEFT JOIN `tipoTratamiento_tbl` as tipoT ON planD.`id_tipoTratam` = tipoT.`id_tipoTratam` WHERE planD.`tipo_planDiag`='Terapéutico' AND planD.`id_consulta` = ? ;",
+    "SELECT tipoT.`tipo_tipoTratam`, tipoT.`tratam_tipoTratam`, planD.`desc_planDiag` FROM `planDiagnostico_tbl` as planD INNER JOIN `tipoTratamiento_tbl` as tipoT ON planD.`id_tipoTratam` = tipoT.`id_tipoTratam` WHERE planD.`tipo_planDiag` = 'Terapéutico' AND planD.`id_consulta` = ? ;",
 
   getPlanesEdu:
-    "SELECT `desc_planDiag` FROM `planDiagnostico_tbl` WHERE `tipo_planDiag`= 'Educacional' AND  `id_consulta` = ? ;",
+    "SELECT `desc_planDiag` FROM `planDiagnostico_tbl` WHERE `tipo_planDiag` = 'Educacional' AND  `id_consulta` = ? ;",
 
   getProcedimientos:
-    "SELECT concat(proced.`cod_proced`,' - ',proced.`nom_proced`) as 'Procedimiento' FROM  `tratamiento_procedimiento_tbl` as tra_pro INNER JOIN `procedimiento_tbl` as proced ON tra_pro.`id_proced` = proced.`id_proced` WHERE tra_pro.`id_tratam` = ?;",
+    "SELECT proced.`cod_proced` as 'codigo', proced.`nom_proced` as 'procedimiento' FROM  `tratamiento_procedimiento_tbl` as tra_pro INNER JOIN `procedimiento_tbl` as proced ON tra_pro.`id_proced` = proced.`id_proced` WHERE tra_pro.`id_tratam` = ?;",
 
   getFotosConsulta:
     "SELECT recurso.`titulo_recurso` as 'titulo', recurso.`descripcion_recurso` as 'descr', DATE_FORMAT( FROM_UNIXTIME(unix_timestamp(recurso.`fecha_recurso`)),'%Y/%m/%d %H:%i:%s') as 'fecha', foto.`url_foto` as 'url' FROM `recursoFoto_tbl` as recurso  INNER JOIN `fotografias_tbl` as foto ON   recurso.`id_recurso`  =foto.`id_recurso` WHERE recurso.`id_consulta` = ? ;",

@@ -1,15 +1,15 @@
 export const consultas_tratam = {
   getTratamConsultas:
-    "SELECT  tra.`id_tratam`, tra.`codigoCIE`,cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie10` as cie ON tra.`codigoCIE` = cie.`codigoCIE` WHERE tra.`id_consulta`= ? ORDER BY tra.`fecha_tratam` DESC; ",
+    "SELECT  tra.`id_tratam`,  tra.`id_tipoTratam`, tipo_tratam.`tipo_tipoTratam`, tipo_tratam.`tratam_tipoTratam` as 'tratamiento', tra.`codigoCIE`, cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie10` as cie ON tra.`codigoCIE` = cie.`codigoCIE` LEFT JOIN `tipotratamiento_tbl` as tipo_tratam ON tra.`id_tipoTratam` = tipo_tratam.`id_tipoTratam` WHERE tra.`id_consulta`= ? ORDER BY tra.`fecha_tratam` DESC;",
 
   getTratamID:
-    "SELECT  tra.`id_tratam`, tra.`codigoCIE`,cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie10` as cie ON tra.`codigoCIE` = cie.`codigoCIE`  WHERE tra.`id_tratam`=?;",
+    "SELECT  tra.`id_tratam`,  tra.`id_tipoTratam`, tipo_tratam.`tipo_tipoTratam`, tipo_tratam.`tratam_tipoTratam` as 'tratamiento', tra.`codigoCIE`, cie.`nombre_enfermedad`, DATE_FORMAT(FROM_UNIXTIME(unix_timestamp(tra.`fecha_tratam`)),'%Y/%m/%d %H:%i:%s') as 'fecha_tratamiento' FROM  `tratamiento_tbl` as tra LEFT JOIN `enfermedades_cie10` as cie ON tra.`codigoCIE` = cie.`codigoCIE` LEFT JOIN `tipotratamiento_tbl` as tipo_tratam ON tra.`id_tipoTratam` = tipo_tratam.`id_tipoTratam` WHERE tra.`id_tratam` = ? ;",
 
   createTratam:
-    "INSERT INTO `tratamiento_tbl` (`id_consulta`,`codigoCIE`) VALUES (?,?);",
+    "INSERT INTO `tratamiento_tbl` (`id_consulta`,`codigoCIE`,`id_tipoTratam`) VALUES (?,?,?);",
 
   updateTratam:
-    "UPDATE `tratamiento_tbl` SET `codigoCIE`= ? WHERE `id_tratam`=?;",
+    "UPDATE `tratamiento_tbl` SET `codigoCIE`= ?, `id_tipoTratam` = ? WHERE `id_tratam` = ? ;",
 
   deleteTratam: "DELETE FROM `tratamiento_tbl` WHERE `id_tratam`=?;",
 };

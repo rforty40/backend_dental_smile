@@ -67,6 +67,7 @@ export const createTratam = async (req, res) => {
     const [result] = await poolDB.query(consultas_tratam.createTratam, [
       req.params.id_consulta,
       req.body.codigoCIE,
+      req.body.id_tipoTratam,
     ]);
 
     //verificar registro
@@ -98,8 +99,15 @@ export const createTratam = async (req, res) => {
 export const updateTratam = async (req, res) => {
   try {
     //ejecutar update
+    console.log(
+      "first --->  ",
+      req.body.codigoCIE,
+      req.body.id_tipoTratam,
+      req.params.id_tratam
+    );
     const [result] = await poolDB.query(consultas_tratam.updateTratam, [
       req.body.codigoCIE,
+      req.body.id_tipoTratam,
       req.params.id_tratam,
     ]);
     //verificar cambios

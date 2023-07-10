@@ -49,16 +49,19 @@ export const getConsultas = async (req, res) => {
         [resultPlanD] = await poolDB.query(consultasConsultas.getPlanesDiag, [
           consulta.id_consulta,
         ]);
+        consulta.planesD = resultPlanD;
 
         //agregar planes terapeuticos
         [resultPlanT] = await poolDB.query(consultasConsultas.getPlanesTera, [
           consulta.id_consulta,
         ]);
+        consulta.planesT = resultPlanT;
 
         //agregar planes educacionales
         [resultPlanE] = await poolDB.query(consultasConsultas.getPlanesEdu, [
           consulta.id_consulta,
         ]);
+        consulta.planesE = resultPlanE;
 
         //agregar Diagnosticos
         [resultD] = await poolDB.query(consultasConsultas.getDiagnosticos, [
