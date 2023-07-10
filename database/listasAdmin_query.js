@@ -19,9 +19,9 @@ export const consultasTipoPago = {
 
 export const consultasTipoConsulta = {
   getAllTiposConsulta:
-    "SELECT tipoCon.*, tipPago.`prec_tipPago` FROM `tipoConsulta_tbl` AS tipoCon LEFT JOIN `tipoPago_tbl` AS tipPago ON tipoCon.`id_tipoConsul`= tipPago.`id_tipoConsul` ORDER BY tipoCon.`id_tipoConsul` ASC;",
+    "SELECT tipoCon.*, tipPago.`prec_tipPago` FROM `tipoConsulta_tbl` AS tipoCon INNER JOIN `tipoPago_tbl` AS tipPago ON tipoCon.`id_tipoConsul`= tipPago.`id_tipoConsul` ORDER BY tipoCon.`id_tipoConsul` ASC;",
   getTipoConsultaID:
-    "SELECT tipoCon.*, tipPago.`prec_tipPago` FROM `tipoConsulta_tbl` AS tipoCon LEFT JOIN `tipoPago_tbl` AS tipPago ON tipoCon.`id_tipoConsul`= tipPago.`id_tipoConsul` WHERE  tipoCon.`id_tipoConsul`= ?; ",
+    "SELECT tipoCon.*, tipPago.`prec_tipPago` FROM `tipoConsulta_tbl` AS tipoCon INNER JOIN `tipoPago_tbl` AS tipPago ON tipoCon.`id_tipoConsul`= tipPago.`id_tipoConsul` WHERE  tipoCon.`id_tipoConsul`= ?; ",
   getTipoConsultaBusq:
     "SELECT * FROM `tipoConsulta_tbl` WHERE match(`tipo_tipoConsul`) against (?) OR `tipo_tipoConsul` like concat('%',?,'%') ",
   createTipoConsulta:
@@ -70,13 +70,13 @@ export const consultasProcedimientos = {
     "	SELECT * FROM  `nomProcedimiento_tbl` as nomPro INNER JOIN  `subtiProcedimiento_tbl`as subPro ON nomPro.`id_Proce` = subPro.`id_Proce` INNER JOIN `tituloProcedimiento_tbl` as titPro  ON  subPro.`id_tituloProced` = titPro.`id_tituloProced` WHERE nomPro.`cod_nomProced` =  ?;", //"D110"
 
   getAllProced:
-    "SELECT  proced.`id_proced`, proced.`cod_proced`, proced.`nom_proced`, tipPago.`prec_tipPago` as 'prec_proced', proced.`desc_proced` FROM `procedimiento_tbl` as proced LEFT JOIN  `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` ORDER BY proced.`cod_proced` ASC;",
+    "SELECT  proced.`id_proced`, proced.`cod_proced`, proced.`nom_proced`, tipPago.`prec_tipPago` as 'prec_proced', proced.`desc_proced` FROM `procedimiento_tbl` as proced INNER JOIN  `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` ORDER BY proced.`cod_proced` ASC;",
 
   getProcedBusq:
-    "SELECT  proced.`id_proced`,proced.`cod_proced`,proced.`nom_proced`,tipPago.`prec_tipPago` as 'prec_proced' ,proced.`desc_proced` FROM `procedimiento_tbl` as proced LEFT JOIN  `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` WHERE proced.`cod_proced` like concat('%',?,'%')  OR match(proced.`nom_proced`) against (?) OR proced.`nom_proced` like concat('%',?,'%') ORDER BY match(proced.`nom_proced`) against (?) desc;",
+    "SELECT  proced.`id_proced`,proced.`cod_proced`,proced.`nom_proced`,tipPago.`prec_tipPago` as 'prec_proced' ,proced.`desc_proced` FROM `procedimiento_tbl` as proced INNER JOIN  `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` WHERE proced.`cod_proced` like concat('%',?,'%')  OR match(proced.`nom_proced`) against (?) OR proced.`nom_proced` like concat('%',?,'%') ORDER BY match(proced.`nom_proced`) against (?) desc;",
 
   getProcedID:
-    "SELECT  proced.`id_proced`,proced.`cod_proced`,proced.`nom_proced`,tipPago.`prec_tipPago` as 'prec_proced',proced.`desc_proced` FROM `procedimiento_tbl` as proced LEFT JOIN `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` WHERE proced.`id_proced` = ?;",
+    "SELECT  proced.`id_proced`,proced.`cod_proced`,proced.`nom_proced`,tipPago.`prec_tipPago` as 'prec_proced',proced.`desc_proced` FROM `procedimiento_tbl` as proced INNER JOIN `tipoPago_tbl` as tipPago ON proced.`id_proced`= tipPago.`id_proced` WHERE proced.`id_proced` = ?;",
 
   createProced:
     "INSERT INTO  `procedimiento_tbl` (`cod_proced`,`nom_proced`,`desc_proced`) values (?,?,?);",
